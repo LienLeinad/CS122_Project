@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+        {% load static %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'my_app/style.css' %}">
+   <title></title>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    {% for name in name_list %}
+
+    <p> {{ name.first_name }} </p>
+    <p>{{ name.last_name }}</p>
+<br>
+    {% endfor %}
+</body>
+</html>

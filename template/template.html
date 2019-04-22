@@ -8,12 +8,17 @@
    <title></title>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    {% for name in name_list %}
+        {% if messages %}
+        {% for message in messages %}
+            <div class = "alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h1>Home Page</h1>
+    <a href = "../logout/"> Log-out</a>
+    <br>
+    
 
-    <p> {{ name.first_name }} </p>
-    <p>{{ name.last_name }}</p>
-<br>
-    {% endfor %}
 </body>
 </html>

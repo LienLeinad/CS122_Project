@@ -76,14 +76,17 @@ p
 	font-size: 13pt;
 }
 
-table
+#tab1
+{
+	width: 50%;
+	font-family: "Helvetica";
+	font-size: 13pt;
+	padding-bottom: 40px;
+}
+
+#tab2
 {
 	width: 100%;
 	font-family: "Helvetica";
 	font-size: 13pt;
-}
-
-th
-{
-	padding-bottom: 25px;
 }

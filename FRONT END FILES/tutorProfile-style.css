@@ -3,6 +3,12 @@ body
 	background: #196dff;
 }
 
+#homered
+{
+	font-family: "Helvetica";
+	font-size: 13pt;
+}
+
 #main
 {
 	width: 1400px;
@@ -10,7 +16,7 @@ body
 	background-color: #ffffff;
 	border: solid 5px #00004c;
 
-	margin-top:  50px;
+	margin-top:  auto;
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;
@@ -74,4 +80,22 @@ h2
 a
 {
 	text-decoration: none;
+}
+
+p
+{
+	font-family: "Helvetica";
+	font-size: 13pt;
+}
+
+table
+{
+	width: 100%;
+	font-family: "Helvetica";
+	font-size: 13pt;
+}
+
+th
+{
+	padding-bottom: 25px;
 }

@@ -3,12 +3,6 @@ body
 	background: #196dff;
 }
 
-#homered
-{
-	font-family: "Helvetica";
-	font-size: 13pt;
-}
-
 #main
 {
 	width: 1400px;
@@ -16,7 +10,7 @@ body
 	background: #ffffff;
 	border: solid 5px #00004c;
 
-	margin-top:  auto;
+	margin-top:  50px;
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;

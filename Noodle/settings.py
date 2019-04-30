@@ -119,5 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'user_login'
 AUTH_USER_MODEL = 'my_app.CustomUser'
+# LOGIN_URL = ''

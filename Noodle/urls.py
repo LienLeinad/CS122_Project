@@ -22,6 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.index, name = 'index' ),
     path('register/', views.register, name = 'register'),
-    path('', auth_views.LoginView.as_view(template_name = 'login.html'), name = 'login'),
+    path('login/', views.login,name = 'user_login'),
+    path('login/profile/',views.profile, name = 'user_profile'),
+    path('login_error/',views.invalid_login, name = 'invalid_login'),
+    path('home/', auth_views.LoginView.as_view(template_name = 'login.html'), name = 'login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'logout.html'), name = 'logout'),
  ]

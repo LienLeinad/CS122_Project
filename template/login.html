@@ -10,6 +10,11 @@
             </div>
         {% endfor %}
     {% endif %}
+    {% if user.is_authenticated %}
+        <p>User is logged in</p>
+        <a href = "{% url 'user_login' %}">Home Page</a>
+        <a href = "{% url 'logout' %}">Log-out</a>
+    {% else %}
     <div class = "content-section">
         <form method = "POST">
             {% csrf_token %}
@@ -18,7 +23,9 @@
                 {{ form.as_p }}
             </fieldset>
             <div class = "form-group">
-                <button class = "btn btn-outline-info" type="submit">Login</button>
+                <a href = "{ url 'user_login' }/{{ form.user_name }}">
+                    <button class = "btn btn-outline-info" type="submit" href = "{ url 'user_login' }/{{ form.user_name }}">Login</button>
+                </a>
             </div>
         </form>
         <div class = "border-top pt-3">
@@ -27,6 +34,7 @@
             </small>
         </div>
     </div>
+    {% endif %}
 </body>
 </html> 
 

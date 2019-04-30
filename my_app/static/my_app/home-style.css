@@ -1,0 +1,59 @@
+body
+{
+	background: #196dff;
+}
+
+#main
+{
+	width: 1400px;
+	height: 650px;
+	background: #ffffff;
+	border: solid 5px #00004c;
+
+	margin-top:  50px;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+
+	font-family: "Helvetica";
+	text-align: center;
+}
+
+#top
+{
+
+}
+
+#content
+{
+	padding-top: 40px;
+	clear: both;
+
+	width: 300px;
+	height: 250px;
+	background: #b2b2ff;
+
+	margin-top:  150px;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1
+{
+	font-family:  "Helvetica";
+	font-size: 18pt;
+	color: #00004c;
+}
+
+h2
+{
+	font-family: "Helvetica"
+	font-size: 18pt;
+	color: #00004c;
+}
+
+a
+{
+	text-decoration: none;
+}

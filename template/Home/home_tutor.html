@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+		{% load static %}
+	<title>Home | NOODLE</title>
+	<link href = "{% static 'my_app/home-style.css' %}" type = "text/css" rel = "stylesheet">
+</head>
+
+<body>
+
+	<div id = "main">
+		<div id = "top">
+			<h1 style = "text-align: left; float: left; padding-left: 20px">HOMEPAGE</h1>
+			<h1 style = "text-align: right; float: right; padding-right: 20px">{{user.last_name}}, {{user.first_name}}</h1>
+		</div>
+
+		<div id = "content">
+			<a href = "tutorProfile_tutor.html"><h3>Tutor Profile</h3></a>
+            <a href = "calendar.html"><h3>Calendar</h3></a>
+            <a href = "allStudents_tutor.html"><h3>Students</h3></a>
+            <a href = "allModules_tutor.html"><h3>All Modules</h3></a>
+		</div>
+
+	</div>
+
+</body>
+</html>

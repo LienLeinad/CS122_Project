@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>{% block title %}{% endblock %}</title>
+        {% block head %}{% endblock %}
+        <link href = "{% static 'my_app/navigationbar-style.css' %}" type = "text/css" rel = "stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <ul class="noodle"><h2> N O O D L E</h2></ul>
+            <ul class="navButtons">   
+                <a href="allModules_tutor.html">All Modules</a>
+                <a href="allStudents_tutor.html">Students</a>
+                <a href="calendar.html">Calendar</a>
+                <a href="tutorProfile_tutor.html">Tutor Profile</a>
+                <a href="home_student.html">Home</a> 
+                
+            </ul>
+        </div>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,21 +1,24 @@
+{% extends "navigationbar_tutor.html" %}
 <!DOCTYPE html>
 <html>
 <head>
 	{% load static %}
-	<title>Tutor Profile | NOODLE</title>
+	<title>{% block title %}Tutor Profile | NOODLE{% endblock %}</title>
+	{% block head %}
 	<link href = "{%static 'my_app/tutorProfile-style.css' %}" type = "text/css" rel = "stylesheet">
+	{% endblock %}
 </head>
 
-<body>
+{% block body %}
 
 	<div id = "main">
 		<div id = "top">
 			<h1 style = "text-align: left; float: left; padding-left: 20px">TUTOR PROFILE</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h1>
+			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}},{{user.first_name}}</h1>
 		</div>
 
 		<div id = "content">
-			<h3 style = "padding-bottom: 50px">Name: John Mark R. Borja</h3>
+			<h3 style = "padding-bottom: 50px">Name: {{user.first_name}} {{ user.last_name }}</h3>
 
 			<h3>Tutor ID: {{user.user_name}}</h3>
 
@@ -34,5 +37,5 @@
 
 	</div>
 
-</body>
+{% endblock %}
 </html>

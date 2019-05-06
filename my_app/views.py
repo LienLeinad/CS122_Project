@@ -40,14 +40,17 @@ def profile(request):
         if user_type == 'ST':
             first_name = user.first_name
             last_name = user.last_name
-            context = {'first_name': first_name, 'last_name':last_name}
+            user_name = user.user_name
+            contact = user.contact
+            email = user.email
+            context = {'email': email,'first_name': first_name, 'last_name':last_name, 'user_name':user_name, 'contact':contact}
 
-            return render(request,'Home/home_student.html', context)
+            return render(request,'Profiles/tutorProfile_tutor.html', context)
         elif user_type == 'TU':
             first_name = user.first_name
             last_name = user.last_name
             context = {'first_name': first_name, 'last_name':last_name}
-            return render(request,'Home/home_tutor.html', context)
+            return render(request,'Profiles/tutorProfile_tutor.html', context)
     
 
 def login(request):

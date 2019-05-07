@@ -53,7 +53,18 @@ h2
 	color: #00004c;
 }
 
-a
+a 
 {
-	text-decoration: none;
+    float:none;
+    font-size: 20px;
+    color: black;
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration:inherit;
+    line-height: 50px;
+}
+
+a:hover 
+{
+  background-color: cadetblue;
 }

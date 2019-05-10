@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import SampleModel
+from .models import SampleModel, Student, CustomUser
 from django.contrib import messages
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def index(request):
     name_list = SampleModel.objects.all()
@@ -22,8 +23,14 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             print('form is valid')
+            
+
             form.save()
             username = form.cleaned_data.get('username')
+            temp = CustomUser.objects.get(username = username)
+            if form.cleaned_data.get('user_type') == 'ST':
+                temp_student = Student(user = temp)
+                temp_student.save()
             messages.success(request,f'Account Created for {username}! go ahead and log in!')
             return redirect('register')
     else:
@@ -40,21 +47,21 @@ def profile(request):
         if user_type == 'ST':
             first_name = user.first_name
             last_name = user.last_name
-            user_name = user.user_name
+            user_name = user.username
             contact = user.contact
             email = user.email
-            context = {'email': email,
-            'first_name': first_name,
-            'last_name':last_name,
-            'user_name':user_name,
-            'contact':contact
-            }
-
-            return render(request,'Profiles/tutorProfile_tutor.html', context)
+            street_name = user.street_name
+            city = user.city
+            birthday = user.birthday
+            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'city': city, 'street_name': street_name, 'birthday': birthday}
+            return render(request,'Profiles/studentProfile_student.html', context)
         elif user_type == 'TU':
             first_name = user.first_name
             last_name = user.last_name
-            context = {'first_name': first_name, 'last_name':last_name}
+            user_name = user.username
+            contact = user.contact
+            email = user.email
+            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact}
             return render(request,'Profiles/tutorProfile_tutor.html', context)
     
 
@@ -75,3 +82,41 @@ def login(request):
             last_name = user.last_name
             context = {'first_name': first_name, 'last_name':last_name}
             return render(request,'Home/home_tutor.html', context)
+
+def user_update(request, username):
+    
+    if not request.user.is_authenticated:
+        return redirect('invalid_login')
+    else:
+        if request.method == 'POST':
+            user_update_form = UserUpdateForm(data = request.POST)
+            if user_update_form.is_valid():
+                current_user = CustomUser.objects.get(username = username)
+                if  user_update_form.cleaned_data.get('street_name') == "":
+                    print('do nothin street')
+                else:
+                    current_user.street_name = user_update_form.cleaned_data.get('street_name')
+
+                if  user_update_form.cleaned_data.get('city') == "":
+                    print('do nothincity')
+                else:
+                    current_user.city = user_update_form.cleaned_data.get('city')
+
+                if  user_update_form.cleaned_data.get('contact') == "":
+                    print('do nothincontact')
+                else:
+                    current_user.contact = user_update_form.cleaned_data.get('contact')
+
+                if  user_update_form.cleaned_data.get('emergency_contact') == "":
+                    print('do nothinem')
+                else:
+                    current_user.emergency_contact = user_update_form.cleaned_data.get('emergency_contact')
+
+                current_user.save(force_update = True)
+                return redirect(profile)
+        else: 
+            user_update_form = UserUpdateForm()
+        context = {
+            'form':user_update_form,
+        }
+    return render(request, 'Profiles/update_form.html', context)

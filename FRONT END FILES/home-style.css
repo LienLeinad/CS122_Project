@@ -37,6 +37,7 @@ body
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;
+    text-align: center;
 }
 
 h1
@@ -53,7 +54,24 @@ h2
 	color: #00004c;
 }
 
-a
+a 
 {
-	text-decoration: none;
+    float:none;
+    font-size: 20px;
+    color: black;
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration:inherit;
+    line-height: 50px;
+}
+
+a:hover 
+{
+  background-color: cadetblue;
+}
+
+#cells td 
+{
+    text-align: center; 
+    vertical-align: middle;
 }

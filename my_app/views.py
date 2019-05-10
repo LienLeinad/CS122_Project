@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import SampleModel, Student, CustomUser
+from .models import SampleModel, Student, CustomUser, Module
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm,StudentRegistrationForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -21,21 +21,24 @@ def invalid_login(request):
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
+        form2 = StudentRegistrationForm(request.POST)
         if form.is_valid():
             print('form is valid')
-            
-
             form.save()
             username = form.cleaned_data.get('username')
             temp = CustomUser.objects.get(username = username)
             if form.cleaned_data.get('user_type') == 'ST':
-                temp_student = Student(user = temp)
-                temp_student.save()
+                
+                if form2.is_valid():
+                    temp_student = Student(user = temp, teacher = form2.cleaned_data.get('teacher'))
+                    temp_student.save()
+
             messages.success(request,f'Account Created for {username}! go ahead and log in!')
             return redirect('register')
     else:
         form = UserRegisterForm()
-    context = {'form':form,}
+        form2 = StudentRegistrationForm()
+    context = {'form':form,'form2':form2}
     return render(request,'register.html', context)
 
 def profile(request):
@@ -88,6 +91,7 @@ def user_update(request, username):
     if not request.user.is_authenticated:
         return redirect('invalid_login')
     else:
+
         if request.method == 'POST':
             user_update_form = UserUpdateForm(data = request.POST)
             if user_update_form.is_valid():
@@ -111,7 +115,6 @@ def user_update(request, username):
                     print('do nothinem')
                 else:
                     current_user.emergency_contact = user_update_form.cleaned_data.get('emergency_contact')
-
                 current_user.save(force_update = True)
                 return redirect(profile)
         else: 
@@ -120,3 +123,15 @@ def user_update(request, username):
             'form':user_update_form,
         }
     return render(request, 'Profiles/update_form.html', context)
+
+def module_list(request):
+    if not request.user.is_authenticated:
+        return redirect('invalid_login')
+    else:
+        user = request.user
+        if user.user_type == "TU":
+            module = Module.objects.all()
+            context = {'Module': module}
+            template = 'all_modules/allModules_tutor.html'
+
+    return render(request, 'all_modules/allModules_tutor.html',context)

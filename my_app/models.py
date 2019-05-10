@@ -43,7 +43,8 @@ class CustomUser(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
-    # teacher = models.ForeignKey(CustomUser,related_name='CustomUser', on_delete = models.CASCADE, blank = True)#https://stackoverflow.com/questions/2642613/what-is-related-name-used-for-in-django
+    #related_name just makes it so that I can have two foreign keys in this model that refers to the same table which is CustomUser
+    teacher = models.ForeignKey(CustomUser,related_name='CustomUser', on_delete = models.CASCADE, blank = True)#https://stackoverflow.com/questions/2642613/what-is-related-name-used-for-in-django
     def __str__(self):
         return str(self.user)
 

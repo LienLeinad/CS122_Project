@@ -11,9 +11,7 @@
         {% endfor %}
     {% endif %}
     {% if user.is_authenticated %}
-        <p>User is logged in</p>
-        <a href = "{% url 'user_login' %}">Home Page</a>
-        <a href = "{% url 'logout' %}">Log-out</a>
+        <h3>Log-In Error detected, please click<a href = "{% url 'logout' %}">here</a> </h3>
     {% else %}
     <div class = "content-section">
         <form method = "POST">

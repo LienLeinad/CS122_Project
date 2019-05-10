@@ -5,7 +5,7 @@
 	{% load static %}
 	<title>{% block title %}Tutor Profile | NOODLE{% endblock %}</title>
 	{% block head %}
-	<link href = "{%static 'my_app/tutorProfile-style.css' %}" type = "text/css" rel = "stylesheet">
+	<link href = "{%static 'my_app/tutorProfile-style.1.css' %}" type = "text/css" rel = "stylesheet">
 	{% endblock %}
 </head>
 
@@ -20,17 +20,17 @@
 		<div id = "content">
 			<h3 style = "padding-bottom: 50px">Name: {{user.first_name}} {{ user.last_name }}</h3>
 
-			<h3>Tutor ID: {{user.user_name}}</h3>
+			<h3>Tutor ID: {{ user.username }}</h3>
 
 			<h3>Email: {{user.email}}</h3>
 
 			<h3>Mobile Number: {{user.contact}}</h3>
 
-			<h3>Birthday: 01 January 2000</h3>
+			<h3>Birthday: {{user.birthday}}</h3>
 		</div>
 
 		<div id = "edit">
-			<a href = "http://www.google.com">
+			<a href = "update/{{ user.username }}">
 				<h3>Edit</h3>
 			</a>
 		</div>

@@ -1,0 +1,69 @@
+{% extends 'navigationbar_student.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+		{% load static %}
+		<title>{% block title%}Student Profile{% endblock %} | NOODLE</title>
+		{% block head %}
+		<link href = "{% static 'my_app/tutorProfile-style.1.css' %}" type = "text/css" rel = "stylesheet">
+		{% endblock %}
+    </head>
+
+    {% block body %}
+		<br>
+        <div id = "main">
+            <div id = "top">
+                <h3 style = "text-align: left; float: left; padding-left: 20px">STUDENT PROFILE</h3>
+                <h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h3>
+            </div>
+
+            <div id = "content">
+
+			<table>
+				<tr>
+					<th>Name: </th>
+					<th>{{user.last_name}}, {{user.first_name}}</th>
+				</tr>
+
+				<tr>
+					<td>Student ID: </td>
+					<td>{{user.username}}</td>
+				</tr>
+
+				<tr>
+					<td>Email: </td>
+					<td>{{ user.email }}</td>
+				</tr>
+
+				<tr>
+					<td>Mobile Number: </td>
+					<td>{{ user.contact}}</td>
+				</tr>
+                
+                <tr>
+					<td>Address: </td>
+					<td>{{user.street_name}}, {{ user.city }}</td>
+				</tr>
+                
+                <tr>
+					<td>Emergency Contact: </td>
+					<td>{{user.emergency_contact}}</td>
+				</tr>
+
+				<tr>
+					<td>Birthday: </td>
+					<td>{{user.birthday}}</td>
+				</tr>
+				
+
+			</table>
+			
+		</div>
+		<div id = "edit">
+				<a href = "update/{{ user.username }}">
+					<h3>Edit</h3>
+				</a>
+			</div>
+        </div>
+    {% endblock %}
+</html>

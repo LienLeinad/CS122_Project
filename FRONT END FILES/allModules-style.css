@@ -25,10 +25,10 @@ body
 	text-align: center;
 }
 
-#top
+/* #top
 {
 
-}
+} */
 
 #content
 {
@@ -60,7 +60,7 @@ h1
 
 h2
 {
-	font-family: "Helvetica"
+	font-family: "Helvetica";
 	font-size: 18pt;
 	color: #00004c;
 }

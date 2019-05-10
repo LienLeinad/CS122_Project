@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
+from .models import CustomUser,Student
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required = False)
@@ -25,7 +25,10 @@ class UserRegisterForm(UserCreationForm):
 
 
 class StudentRegistrationForm(forms.ModelForm):
-    teacher = forms.ModelChoiceField(queryset = CustomUser.objects.filter(user_type = 'TU'))
+    teacher = forms.ModelChoiceField(queryset = CustomUser.objects.filter(user_type = 'TU'), required= False)
+    class Meta:
+        model = Student
+        fields = ['teacher']
 class UserUpdateForm(forms.ModelForm):
     street_name = forms.CharField(max_length=30, required = False)
     city = forms.CharField(max_length= 40, required = False)

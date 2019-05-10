@@ -1,0 +1,60 @@
+{% extends "navigationbar_tutor.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<title>{% block title%}ALL MODULES{% endblock %}</title>
+	{% block head %}
+	<link href = "{% static 'my_app/allModules-style.css' %}" type = "text/css" rel = "stylesheet">
+	{% endblock %}
+</head>
+
+{% block body %}
+	<br>
+	<div id = "main">
+		<div id = "top">
+			<h1 style = "text-align: left; float: left; padding-left: 20px">ALL MODULES</h1>
+			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h1>
+		</div>
+
+		<div id = "content">
+            <input type="submit" name="upload" value="Upload">
+			<div id = "table">
+				<table>
+					<tr>
+						<th>Module Name</th>
+						<th>Date Assigned</th>
+						<th>Description</th>
+					</tr>
+					{% if not Module == None %}
+						{% for module in Module %}
+						<tr>
+							<td>
+								<a href = "module.html">{{ module.ModuleTitle }}</a>
+							</td>
+							<td>{{module.pub_date}}</td>
+							<td id = 'desc'>{{ module.Description }}</td>
+						</tr>
+						{% endfor %}
+					{% else %}
+						<tr>
+							<td>No Modules Found</td>
+						</tr>
+					{% endif %}
+					<!-- <tr>
+						<td>Introduction to HTML 2</td>
+						<td>02 March 2019</td>
+						<td>
+							<a href = "module.html">Introduction-to-HTML-2</a>
+						</td>
+					</tr> -->
+
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}
+</html>

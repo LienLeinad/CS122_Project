@@ -2,16 +2,10 @@
 <html>
 <head>
 	<title>TUTOR PROFILE</title>
-	<link href = "tutorProfile-style.css" type = "text/css" rel = "stylesheet">
+	<link href = "profile-style.css" type = "text/css" rel = "stylesheet">
 </head>
 
 <body>
-
-	<div id = "homered">
-		<h1 style = "">
-				<a href = "home.html">HOME</a>
-			</h1>
-	</div>
 
 	<div id = "main">
 		<div id = "top">
@@ -20,43 +14,19 @@
 		</div>
 
 		<div id = "content">
+            <form action="/action_page.php" method="get" name="myForm">
+            Name: <input type="text" name="name" readonly><br>
+            Tutor ID: <input type="text" name="tutorID" readonly><br>
+            Email: <input type="text" name="email" readonly><br>
+            Mobile Number: <input type="text" name="mobileNo"><br>
+            Birthday: <input type="text" name="bday" readonly><br>
+            <br>
+            <input type="button" onclick="location.href='editProfile_tutor.html'" value="Edit" align="right" width="48" height="48">
+            </form>
 
-			<table>
-				<tr>
-					<th>Name: </th>
-					<th>BORJA, John Mark R.</th>
-				</tr>
-
-				<tr>
-					<td>Tutor ID: </td>
-					<td>123456</td>
-				</tr>
-
-				<tr>
-					<td>Email: </td>
-					<td>johnmarkborja@mail.com</td>
-				</tr>
-
-				<tr>
-					<td>Mobile Number: </td>
-					<td>0912 345 6789</td>
-				</tr>
-
-				<tr>
-					<td>Birthday: </td>
-					<td>01 January 2000</td>
-				</tr>
-
-
-			</table>
-
-		</div>
-
-		<div id = "edit">
-			<input type="submit" name="submit" value="Edit">
 		</div>
 
 	</div>
-
+    
 </body>
 </html>

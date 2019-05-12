@@ -1,0 +1,140 @@
+body
+{
+	background: #196dff;
+}
+
+#homered
+{
+	font-family: "Helvetica";
+	font-size: 13pt;
+}
+
+#main
+{
+	width: 1400px;
+	height: 650px;
+	background-color: #ffffff;
+	border: solid 5px #00004c;
+
+	margin-top:  auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+
+	font-family: "Helvetica";
+	text-align: center;
+}
+
+#top
+{
+
+}
+
+#content
+{
+	padding-top: 40px;
+	padding-left: 40px;
+
+	width: 600px;
+	height: 400px;
+	background: #b2b2ff;
+
+	margin-top:  120px;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+
+	float: left;
+	text-align: left;
+}
+
+#edit
+{
+	width: 150px;
+	height: 50;
+	background: #b2b2ff;
+
+	margin-top: 120px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: 350px;
+
+	float: right;
+	text-align: center;
+}
+
+h1
+{
+	font-family:  "Helvetica";
+	font-size: 18pt;
+	color: #00004c;
+}
+
+h2
+{
+	font-family: "Helvetica"
+	font-size: 18pt;
+	color: #00004c;
+}
+
+a
+{
+	text-decoration: none;
+}
+
+p
+{
+	font-family: "Helvetica";
+	font-size: 13pt;
+}
+
+table
+{
+	width: 100%;
+	font-family: "Helvetica";
+	font-size: 13pt;
+}
+
+th
+{
+	padding-bottom: 25px;
+}
+
+input 
+{
+    
+}
+
+input[type=text] 
+{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type=text]:focus 
+{
+    background-color: lightblue;
+}
+
+input[type=button], input[type=submit], input[type=reset] 
+{
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input:read-only 
+{ 
+    color: grey;
+    font-size: 14px;
+}

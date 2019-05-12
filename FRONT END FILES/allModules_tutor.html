@@ -7,11 +7,6 @@
 
 <body>
 
-	<div id = "homered">
-		<h1 >
-				<a href = "home.html">HOME</a>
-			</h1>
-	</div>
 
 	<div id = "main">
 		<div id = "top">
@@ -20,7 +15,6 @@
 		</div>
 
 		<div id = "content">
-            <input type="submit" name="upload" value="Upload">
 			<div id = "table">
 				<table>
 					<tr>
@@ -33,7 +27,7 @@
 						<td>Introduction to HTML 1</td>
 						<td>01 March 2019</td>
 						<td>
-							<a href = "module.html">Introduction-to-HTML-1</a>
+							<a href = "module_tutor.html">Introduction-to-HTML-1</a>
 						</td>
 					</tr>
 
@@ -41,7 +35,7 @@
 						<td>Introduction to HTML 2</td>
 						<td>02 March 2019</td>
 						<td>
-							<a href = "module.html">Introduction-to-HTML-2</a>
+							<a href = "module_tutor.html">Introduction-to-HTML-2</a>
 						</td>
 					</tr>
 
@@ -49,6 +43,12 @@
 
 			</div>
 		</div>
+        
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select module file to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload File" name="submit">
+        </form>
 
 	</div>
 

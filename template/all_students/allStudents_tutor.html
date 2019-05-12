@@ -1,0 +1,48 @@
+{% extends 'navigationbar_tutor.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<title>{% block title %}ALL STUDENTS{% endblock %}</title>
+	{% block head %}
+	<link href = "{% static 'my_app/allStudents-style.css' %}" type = "text/css" rel = "stylesheet">
+	{% endblock %}
+</head>
+
+{% block body %}
+	<br>
+
+
+	<div id = "main">
+		<div id = "top">
+			<h1 style = "text-align: left; float: left; padding-left: 20px">ALL STUDENTS</h1>
+			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h1>
+		</div>
+
+		<div id = "content">
+			<div id = "table">
+				<table>
+					<tr>
+						<th>Student Name</th>
+						<th>Student ID</th>
+						<th>Email</th>
+						<th>Mobile Number</th>
+					</tr>
+					{% for s in students %}
+					<tr>
+							<td>{{s.user.last_name}}, {{s.user.first_name}}</td>
+							<td>{{s.user.username}}</td>
+							<td>{{s.user.contact}}</td>
+							<td>{{s.user.birthday}}</td>
+					</tr>
+					{% endfor %}
+
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}
+</html>

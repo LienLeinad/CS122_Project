@@ -124,14 +124,25 @@ def user_update(request, username):
         }
     return render(request, 'Profiles/update_form.html', context)
 
+def student_list(request):
+    if not request.user.is_authenticated or request.user.user_type == "ST":
+        return redirect('invalid_login')
+    else:
+        students =  Student.objects.filter(teacher = request.user )
+        context = {'students':students}
+
+        return render(request,'all_students/allStudents_tutor.html',context)
+
+        
+
 def module_list(request):
     if not request.user.is_authenticated:
         return redirect('invalid_login')
     else:
         user = request.user
+        module = Module.objects.all()
+        context = {'Module': module}
         if user.user_type == "TU":
-            module = Module.objects.all()
-            context = {'Module': module}
-            template = 'all_modules/allModules_tutor.html'
-
-    return render(request, 'all_modules/allModules_tutor.html',context)
+            return render(request, 'all_modules/allModules_tutor.html',context)
+        elif user.user_type == "ST":
+            return render(request,'all_modules/allModules_student.html',context)

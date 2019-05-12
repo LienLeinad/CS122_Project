@@ -53,7 +53,7 @@ class Module(models.Model):
     Description = models.TextField(max_length = 500)
     pub_date = models.DateTimeField(auto_now_add = True, editable = False)
     Tutor = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
-    file = models.FileField(upload_to='modules/')
+    file = models.FileField(upload_to='modules/',blank = True)
 
 # class UserModel (models.Model):
 #     STUDENT = 'ST'

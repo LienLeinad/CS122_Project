@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser,Student
+from .models import CustomUser,Student,Module
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required = False)
@@ -37,3 +37,11 @@ class UserUpdateForm(forms.ModelForm):
     class Meta :
         model = CustomUser
         fields = ['contact', 'emergency_contact', 'city', 'street_name']
+class ModuleUploadForm(forms.ModelForm):
+    ModuleTitle = forms.CharField(max_length = 40)
+    Description = forms.CharField()
+    Tutor = forms.ModelChoiceField(queryset = CustomUser.objects.filter(user_type = 'TU'))
+    file = forms.FileField(allow_empty_file = True)
+    class Meta:
+        model = Module
+        fields = ['ModuleTitle','Description','Tutor','file']

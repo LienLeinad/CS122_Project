@@ -1,46 +1,43 @@
 body
 {
-	background: #196dff;
-}
-
-#homered
-{
-	font-family: "Helvetica";
-	font-size: 13pt;
+	background-color: black;
+    background-image: url("back1.jpg");
+    color:white;
+    background-size:auto;
 }
 
 #main
 {
-	width: 1400px;
-	height: 650px;
-	background-color: #ffffff;
-	border: solid 5px #00004c;
-
-	margin-top:  auto;
+	margin-top: auto;
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;
-
-	font-family: "Helvetica";
+    
+	font-family: "Trebuchet MS";
 	text-align: center;
+    align-content: center;
+    font-size: 18px;  
 }
 
-#top
+#top /*label of page (ex: EDIT PROFILE), and name of user identified*/
 {
-
+    font-size: 20px;
 }
 
-#content
+#content-student /*everything in the black box of student*/
 {
-	padding-top: 40px;
+    padding-top: 40px;
 	padding-left: 40px;
+    padding-right: 40px;
 
 	width: 600px;
-	height: 400px;
-	background: #b2b2ff;
+	height: 690px;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
 
 	margin-top:  120px;
-	margin-bottom: auto;
+	margin-bottom: 100px;
 	margin-left: auto;
 	margin-right: auto;
 
@@ -48,84 +45,50 @@ body
 	text-align: left;
 }
 
-#edit
+#content-tutor /*everything in the black box of tutor*/
 {
-	width: 150px;
-	height: 50;
-	background: #b2b2ff;
+    padding-top: 40px;
+	padding-left: 40px;
+    padding-right: 40px;
 
-	margin-top: 120px;
+	width: 600px;
+	height: 550px;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+
+	margin-top:  120px;
 	margin-bottom: 100px;
 	margin-left: auto;
-	margin-right: 350px;
+	margin-right: auto;
 
-	float: right;
-	text-align: center;
+	float: left;
+	text-align: left;
 }
 
-h1
-{
-	font-family:  "Helvetica";
-	font-size: 18pt;
-	color: #00004c;
-}
-
-h2
-{
-	font-family: "Helvetica"
-	font-size: 18pt;
-	color: #00004c;
-}
-
-a
-{
-	text-decoration: none;
-}
-
-p
-{
-	font-family: "Helvetica";
-	font-size: 13pt;
-}
-
-table
-{
-	width: 100%;
-	font-family: "Helvetica";
-	font-size: 13pt;
-}
-
-th
-{
-	padding-bottom: 25px;
-}
-
-input 
-{
-    
-}
-
-input[type=text] 
+input[type=text] /*inputted text in the white bixes*/
 {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 16px;
+    background-color:whitesmoke;
 }
 
-input[type=text]:focus 
+input[type=text]:focus /*hovering design*/
 {
     background-color: lightblue;
 }
 
-input[type=button], input[type=submit], input[type=reset] 
+input[type=button], input[type=submit], input[type=reset] /*buttons*/
 {
     background-color: black;
     border: none;
     color: white;
+    font-size: 18px;
     padding: 16px 32px;
     text-decoration: none;
     margin: 4px 2px;
@@ -133,8 +96,8 @@ input[type=button], input[type=submit], input[type=reset]
     border-radius: 4px;
 }
 
-input:read-only 
+input:read-only /*uneditable fields*/
 { 
     color: grey;
-    font-size: 14px;
+    font-size: 16px;
 }

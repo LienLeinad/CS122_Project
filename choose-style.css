@@ -1,0 +1,46 @@
+body
+{
+	background-image: url("back1.jpg");
+    color:white;
+    background-size: auto;
+}
+
+#main
+{
+	margin-top:  auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+
+	font-family: "Trebuchet MS";
+	text-align: center;
+    align-content: center;
+    font-size: 18px;
+}
+#text
+{
+    font-family: "Trebuchet MS";
+    text-align: center;
+    padding-top: 120px;
+    font-size: 60px;
+}
+
+input[type=button], input[type=submit], input[type=reset] /*buttons*/
+{
+    
+    width: 100%;
+    background-color: black;
+    border:none;
+    color:cadetblue;
+    font-size: 30px;
+    padding: 35px 35px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#buttons
+{
+    margin: 20px;
+}

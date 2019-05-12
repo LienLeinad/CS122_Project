@@ -16,15 +16,17 @@
 			<h1 style = "text-align: left; float: left; padding-left: 20px">ALL MODULES</h1>
 			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h1>
 		</div>
-
+		<input type="button" onclick="location.href='{% url "module_upload" %}'" value="Upload Module" align="left" width="48" height="48">
 		<div id = "content">
-            <button href = "#">Upload</button>
+            
 			<div id = "table">
 				<table>
 					<tr>
 						<th>Module Name</th>
 						<th>Date Assigned</th>
+						<th>Uploader</th>
 						<th>Description</th>
+						
 					</tr>
 					{% if not Module == None %}
 						{% for module in Module %}
@@ -33,7 +35,9 @@
 								<a href = "module.html">{{ module.ModuleTitle }}</a>
 							</td>
 							<td>{{module.pub_date}}</td>
+							<td>{{module.Tutor.first_name}} {{ module.Tutor.last_name }}</td>
 							<td id = 'desc'>{{ module.Description }}</td>
+							
 						</tr>
 						{% endfor %}
 					{% else %}

@@ -13,7 +13,7 @@
             <ul class="noodle"><h2> N O O D L E</h2></ul>
             <ul class="navButtons">   
                 <a href="{% url 'module_list'%}">All Modules</a>
-                <a href="calendar.html">Calendar</a>
+
                 <a href="{% url 'user_profile' %}">Student Profile</a>
                 <a href="{% url 'user_login' %}">Home</a>  
                 {% if user.is_authenticated %}

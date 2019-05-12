@@ -39,9 +39,9 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['contact', 'emergency_contact', 'city', 'street_name']
 class ModuleUploadForm(forms.ModelForm):
     ModuleTitle = forms.CharField(max_length = 40)
-    Description = forms.CharField()
-    Tutor = forms.ModelChoiceField(queryset = CustomUser.objects.filter(user_type = 'TU'))
+    Description = forms.CharField(widget = forms.Textarea)
+    # Tutor = forms.ModelChoiceField(queryset = CustomUser.objects.filter(user_type = 'TU'))
     file = forms.FileField(allow_empty_file = True)
     class Meta:
         model = Module
-        fields = ['ModuleTitle','Description','Tutor','file']
+        fields = ['ModuleTitle','Description','file']

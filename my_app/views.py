@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import SampleModel, Student, CustomUser, Module
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm,StudentRegistrationForm
+from .forms import UserRegisterForm, UserUpdateForm,StudentRegistrationForm,ModuleUploadForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -134,6 +134,20 @@ def student_list(request):
         return render(request,'all_students/allStudents_tutor.html',context)
 
         
+def module_upload(request):
+    if not request.user.is_authenticated or request.user.user_type == "ST":
+        return redirect('invalid_login')
+    else:
+        if request.method == 'POST':
+            form = ModuleUploadForm(request.POST,request.FILES)
+            print('I got here')
+            if form.is_valid():
+                print('form is valid')
+                form.save()
+                return redirect('module_list')
+        form = ModuleUploadForm()
+        context = {'form':form}
+        return render(request, 'all_modules/module_upload/module_upload.html',context)
 
 def module_list(request):
     if not request.user.is_authenticated:

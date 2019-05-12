@@ -29,5 +29,6 @@ urlpatterns = [
     path('home/', auth_views.LoginView.as_view(template_name = 'login.html'), name = 'login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'logout.html'), name = 'logout'),
     path('login/modules/',views.module_list, name = 'module_list'),
-    path('login/students', views.student_list, name = 'student_list')
+    path('login/students', views.student_list, name = 'student_list'),
+    path('login/modules/upload/', views.module_upload,name = 'module_upload'),
  ]

@@ -1,0 +1,55 @@
+{% extends 'navigationbar_tutor.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>{% block title %}TUTOR PROFILE{% endblock %}</title>
+    {% block head %}
+    <link href = "{% static 'my_app/profile-style.css' %}" type = "text/css" rel = "stylesheet">
+    {% endblock %}
+</head>
+
+{% block body %}
+
+	<div id = "main">
+		<div id = "top">
+			<h3 style = "text-align: left; float: left; padding-left: 20px">TUTOR PROFILE</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h3>
+		</div>
+
+		<div id="content-tutor">
+                <table>
+                    <tr>
+                        <th>Name: </th>
+                        <td>{{user.first_name}} {{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>TutorID: </th>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Number:</th>
+                        <td>{{ user.contact }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email: </th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Emergency Contact: </th>
+                        <td>{{user.emergency_contact}}</td>
+                    </tr>
+                    <tr>
+                        <th>Birthday: </th>
+                        <td>{{ user.birthday }}</td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+            <input type="button" onclick="location.href='update/{{ user.username }}'" value="Edit" align="left" width="48" height="48">
+            </div>
+
+	</div>
+    
+{% endblock %}
+</html>

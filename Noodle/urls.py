@@ -31,4 +31,8 @@ urlpatterns = [
     path('login/modules/',views.module_list, name = 'module_list'),
     path('login/students', views.student_list, name = 'student_list'),
     path('login/modules/upload/', views.module_upload,name = 'module_upload'),
+    path('reg', views.register_choice, name = 'choose'),
+    path('login/profile/tutor', views.cross_profile_student, name = 'cross_profile_student'),
+    path('login/profile/students/cross/<user_name>',views.cross_profile_tutor,name = 'cross_profile_tutor')
+
  ]

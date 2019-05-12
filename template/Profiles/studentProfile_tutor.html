@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title> Student Profile | NOODLE </title>
+        <link href = "{% static 'my_app/profile-style.css' %}" type = "text/css" rel = "stylesheet">
+    </head>
+    <body>
+        <div id = "main">
+            <div id = "top">
+                <h3 style = "text-align: left; float: left; padding-left: 20px">STUDENT PROFILE</h3>
+                <h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{teacher.last_name}}, {{teacher.first_name}}</h3>
+            </div>
+                
+                <div id="content-extended">
+                <table>
+                    <tr>
+                        <th>Name: </th>
+                        <td>{{student.first_name}} {{student.last_name}}</td>
+                    </tr>
+                    <tr>
+                        <th>StudentID: </th>
+                        <td>{{student.username}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email: </th>
+                        <td>{{student.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Number: </th>
+                        <td>{{student.contact}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address: </th>
+                        <td>{{student.street_name}}, {{student.city}}</td>
+                    </tr>
+                    <tr>
+                        <th>Emergency Contact: </th>
+                        <td>{{student.emergency_contact}}.</td>
+                    </tr>
+                    <tr>
+                        <th>Birthday: </th>
+                        <td>{{student.birthday}}</td>
+                    </tr>
+                </table>
+                <br>
+                    
+                    <div id="submissions-content">
+                        <h4>Submissions</h4>
+                        <table>
+                            <tr>
+                                <th>Link</th>
+                                <th>Date Submitted</th> 
+                                <th>Comments</th>
+                              </tr>
+                              <tr>
+                                <td><a href = "module_tutor.html"> <p>Lesson 1</p></a></td>
+                                <td>Dec 31, 2019</td>
+                                <td>Nice one!</td>
+                              </tr>
+                              <tr>
+                                <td><a href = "module_tutor.html"> <p>Lesson 2</p></a></td>
+                                <td>June 6, 2019</td>
+                                <td>Yikes!</td>
+                              </tr>
+                        </table>
+                        
+                    </div>
+                </div>            
+	       </div>
+    </body>
+</html>

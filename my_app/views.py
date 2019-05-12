@@ -18,6 +18,9 @@ def invalid_login(request):
     else:
         return redirect('user_login')
 
+def register_choice(request):
+    return render(request,'chooseProfile.html')
+
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
@@ -47,7 +50,10 @@ def profile(request):
     else:
         user = request.user
         user_type = user.user_type
+        
         if user_type == 'ST':
+            student = Student.objects.get(user = user)
+            teacher = student.teacher
             first_name = user.first_name
             last_name = user.last_name
             user_name = user.username
@@ -56,8 +62,8 @@ def profile(request):
             street_name = user.street_name
             city = user.city
             birthday = user.birthday
-            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'city': city, 'street_name': street_name, 'birthday': birthday}
-            return render(request,'Profiles/studentProfile_student.html', context)
+            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'city': city, 'street_name': street_name, 'birthday': birthday, 'student':student,'teacher':teacher}
+            return render(request,'Profiles/studentProfile_student.1.html', context)
         elif user_type == 'TU':
             first_name = user.first_name
             last_name = user.last_name
@@ -65,7 +71,7 @@ def profile(request):
             contact = user.contact
             email = user.email
             context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact}
-            return render(request,'Profiles/tutorProfile_tutor.html', context)
+            return render(request,'Profiles/tutorProfile_tutor.1.html', context)
     
 
 def login(request):
@@ -122,7 +128,11 @@ def user_update(request, username):
         context = {
             'form':user_update_form,
         }
-    return render(request, 'Profiles/update_form.html', context)
+    if request.user.user_type == "TU":
+        template = 'Profiles/editProfile_tutor.html'
+    elif request.user.user_type == "ST":
+        template = 'Profiles/editProfile_student.html'
+    return render(request, template, context)
 
 def student_list(request):
     if not request.user.is_authenticated or request.user.user_type == "ST":
@@ -133,7 +143,28 @@ def student_list(request):
 
         return render(request,'all_students/allStudents_tutor.html',context)
 
+def cross_profile_student(request):
+    if not request.user.is_authenticated:
+        return redirect('invalid_login')
+    else: 
+        student_user = Student.objects.get(user = request.user)
+        Teacher = student_user.teacher
+        template = 'Profiles/tutorProfile_student.html'
+        context = {'user':Teacher, 'student_user':request.user}
+
+        return render(request,template,context)
         
+def cross_profile_tutor(request,user_name):
+    if not request.user.is_authenticated:
+        return redirect('invalid_login')
+    else: 
+        student = CustomUser.objects.get(username = user_name)
+        teacher = request.user
+        context = {'student':student, 'teacher':teacher}
+        return render(request, 'Profiles/studentProfile_tutor.html',context)
+
+        
+     
 def module_upload(request):
     if not request.user.is_authenticated or request.user.user_type == "ST":
         return redirect('invalid_login')
@@ -142,8 +173,13 @@ def module_upload(request):
             form = ModuleUploadForm(request.POST,request.FILES)
             print('I got here')
             if form.is_valid():
+                ModuleTitle = form.cleaned_data.get('ModuleTitle')
+                Description = form.cleaned_data.get('Description')
+                Tutor = request.user
+                file = form.cleaned_data.get('file')
+                module = Module(ModuleTitle = ModuleTitle, Description = Description, Tutor = Tutor, file = file)
+                module.save() 
                 print('form is valid')
-                form.save()
                 return redirect('module_list')
         form = ModuleUploadForm()
         context = {'form':form}

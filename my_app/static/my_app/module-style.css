@@ -12,7 +12,7 @@ body
 #main
 {
 	width: 1400px;
-	height: 750px;
+	height: 650px;
 	background: #ffffff;
 	border: solid 5px #00004c;
 
@@ -24,43 +24,25 @@ body
 	font-family: "Helvetica";
 	text-align: center;
 }
-#desc
-{
-	width:550px;
-	padding-right:25px
-}
 
 /* #top
 {
 
 } */
-input[type=button]
-{
-	background-color: black;
-    border: none;
-    color: white;
-    font-size: 18px;
-    padding: 16px 32px;
-    text-decoration: none;
-    /* margin: 4px 2px; */
-    cursor: pointer;
-	border-radius: 4px;
-	margin-top:60px;
-}
+
 #content
 {
 	padding-top: 40px;
 	clear: both;
 
 	width: 1300px;
-	height: 500px;
+	height: 410px;
 	background: #b2b2ff;
 
-	margin-top:  50px;
+	margin-top:  150px;
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;
-	overflow:auto;
 }
 
 #table
@@ -94,23 +76,17 @@ p
 	font-size: 13pt;
 }
 
-table
+#tab1
+{
+	width: 50%;
+	font-family: "Helvetica";
+	font-size: 13pt;
+	padding-bottom: 40px;
+}
+
+#tab2
 {
 	width: 100%;
 	font-family: "Helvetica";
 	font-size: 13pt;
-}
-
-th
-{
-	padding-bottom: 25px;
-	padding-top: 0px
-}
-
-td
-{
-	padding-top: 15px;
-	padding-bottom: 15px;
-	/* border-bottom: 1px solid #000000;
-	border-top: 1px solid #000000; */
 }

@@ -30,7 +30,9 @@
 					</tr>
 					{% for s in students %}
 					<tr>
-							<td>{{s.user.last_name}}, {{s.user.first_name}}</td>
+							<td>
+								<a href = 'profile/students/cross/{{ s.user.username }}'>{{s.user.last_name}}, {{s.user.first_name}}</a>
+							</td>
 							<td>{{s.user.username}}</td>
 							<td>{{s.user.contact}}</td>
 							<td>{{s.user.birthday}}</td>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create Profile | NOODLE</title>
+        <link href = "editProfile-style.css" type = "text/css" rel = "stylesheet">
+    </head>
+
+    <body>
+
+        <div id = "main">
+            <div id = "top">
+                <h3 style = "text-align: left; float: left; padding-left: 20px">CREATE STUDENT PROFILE</h3>
+            </div>
+
+            <div id = "content-student">
+
+                <form action="/action_page.php" method="get" name="myForm">
+                Name: <input type="text" name="name"><br>
+                Student ID: <input type="text" name="studentID"><br>
+                Email: <input type="text" name="email"><br>
+                Mobile Number: <input type="text" name="mobileNo"><br>
+                Address: <input type="text" name="address"><br>
+                Emergency Contact: <input type="text" name="eContact"><br>
+                Birthday: <input type="text" name="bday"><br>
+                <br>
+                <input type="button" onclick="formSubmit()" value="Sign-up">
+                </form>
+
+		  </div>
+        </div>
+    </body>
+</html>
+

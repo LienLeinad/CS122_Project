@@ -1,11 +1,14 @@
+{% extends 'navigationbar_tutor.html' %}
 <!DOCTYPE html>
 <html>
     <head>
         {% load static %}
-        <title> Student Profile | NOODLE </title>
+        <title>{% block title %} Student Profile | NOODLE{% endblock %} </title>
+        {% block head %}
         <link href = "{% static 'my_app/profile-style.css' %}" type = "text/css" rel = "stylesheet">
+        {% endblock %}
     </head>
-    <body>
+    {% block body %}
         <div id = "main">
             <div id = "top">
                 <h3 style = "text-align: left; float: left; padding-left: 20px">STUDENT PROFILE</h3>
@@ -68,5 +71,5 @@
                     </div>
                 </div>            
 	       </div>
-    </body>
+    {% endblock %}
 </html>

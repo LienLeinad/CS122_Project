@@ -4,7 +4,8 @@ from .models import SampleModel, Student, CustomUser, Module
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm,StudentRegistrationForm,ModuleUploadForm
 from django.contrib.auth.decorators import login_required
-
+from wsgiref.util import FileWrapper
+import os, tempfile, zipfile, mimetypes, io
 # Create your views here.
 def index(request):
     name_list = SampleModel.objects.all()
@@ -163,7 +164,13 @@ def cross_profile_tutor(request,user_name):
         context = {'student':student, 'teacher':teacher}
         return render(request, 'Profiles/studentProfile_tutor.html',context)
 
-        
+def module_tutor(request,ModuleTitle):
+    if not request.user.is_authenticated or request.user.user_type == "ST":
+        return redirect('invalid_login')
+    else:
+        module = Module.objects.get(ModuleTitle = ModuleTitle)
+        context = {'module':module, 'user':request.user}
+    return render(request, 'module/module_tutor.html', context)
      
 def module_upload(request):
     if not request.user.is_authenticated or request.user.user_type == "ST":
@@ -196,3 +203,11 @@ def module_list(request):
             return render(request, 'all_modules/allModules_tutor.html',context)
         elif user.user_type == "ST":
             return render(request,'all_modules/allModules_student.html',context)
+def send_file(request, file_name):
+    filename = os.path.join(settings.MEDIA_ROOT, file_name)
+    wrapper = FileWrapper(open(filename, 'rb'))
+    content_type = mimetypes.guess_type(filename)[0]
+    response = HttpResponse(wrapper, content_type=content_type)
+    response['Content-Length'] = os.path.getsize(filename)    
+    response['Content-Disposition'] = "attachment; filename=%s"%file_name
+    return response

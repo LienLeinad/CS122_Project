@@ -1,36 +1,39 @@
+{% extends "navigationbar_tutor.html" %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MODULE</title>
-	<link href = "module-style.css" type = "text/css" rel = "stylesheet">
+	{% load static %}
+	<title>{% block title %}MODULE{% endblock %}</title>
+	{% block head %}
+	<link href = "{% static 'my_app/module-style.css'%}" type = "text/css" rel = "stylesheet">
+	{% endblock %}
 </head>
+{% block body %}
 
-<body>
-
-
+<br>
 
 	<div id = "main">
 		<div id = "top">
-			<h1 style = "text-align: left; float: left; padding-left: 20px">MODULE: Introduction to HTML 1</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h1>
+			<h1 style = "text-align: left; float: left; padding-left: 20px">MODULE: {{module.ModuleTitle}}</h1>
+			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h1>
 		</div>
 
 		<div id = "content">
 			<div id = "table">
 				<table id = "tab1">
 					<tr>
-						<th>Introduction to HTML 1</th>
+						<th>{{module.ModuleTitle}}</th>
 					</tr>
 
 					<tr>
 						<th style = "padding-bottom: 25px; padding-left: 20px">
-							<a href = "https://www.google.com">DOWNLOAD introduction-to-html-1.pdf</a>
+							<a href = "\my_app\static\modules\151_Curitiba.p65.pdf" download>Download Presentation File</a>
 						</th>
 					</tr>
 
 					<tr>
 						<td style = "padding-bottom: 25px">Date Uploaded: </td>
-						<td style = "padding-bottom: 25px">01 March 2019</td>
+						<td style = "padding-bottom: 25px">{{module.pub_date}}</td>
 					</tr>
 
 					<tr>
@@ -74,5 +77,5 @@
 
 	</div>
 
-</body>
+{% endblock %}
 </html>

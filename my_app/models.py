@@ -54,6 +54,8 @@ class Module(models.Model):
     pub_date = models.DateTimeField(auto_now_add = True, editable = False)
     Tutor = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
     file = models.FileField(upload_to='modules/',blank = True)
+    def filename(self):
+        return os.path.basename(self.file.name)
 
 # class UserModel (models.Model):
 #     STUDENT = 'ST'

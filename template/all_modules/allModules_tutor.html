@@ -32,7 +32,7 @@
 						{% for module in Module %}
 						<tr>
 							<td>
-								<a href = "module.html">{{ module.ModuleTitle }}</a>
+								<a href = "{{module.ModuleTitle}}">{{ module.ModuleTitle }}</a>
 							</td>
 							<td>{{module.pub_date}}</td>
 							<td>{{module.Tutor.first_name}} {{ module.Tutor.last_name }}</td>

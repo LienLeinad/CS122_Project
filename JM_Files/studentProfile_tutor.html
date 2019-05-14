@@ -1,49 +1,45 @@
-{% extends 'navigationbar_tutor.html' %}
 <!DOCTYPE html>
 <html>
     <head>
-        {% load static %}
-        <title>{% block title %} Student Profile | NOODLE{% endblock %} </title>
-        {% block head %}
-        <link href = "{% static 'my_app/profile-style.css' %}" type = "text/css" rel = "stylesheet">
-        {% endblock %}
+        <title> Student Profile | NOODLE </title>
+        <link href = "profile-style.css" type = "text/css" rel = "stylesheet">
     </head>
-    {% block body %}
+    <body>
         <div id = "main">
             <div id = "top">
                 <h3 style = "text-align: left; float: left; padding-left: 20px">STUDENT PROFILE</h3>
-                <h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{teacher.last_name}}, {{teacher.first_name}}</h3>
+                <h3 style = "text-align: right; float: right; padding-right: 20px">Name: SY, Czarina Svetlana</h3>
             </div>
                 
                 <div id="content-extended">
                 <table>
                     <tr>
                         <th>Name: </th>
-                        <td>{{student.first_name}} {{student.last_name}}</td>
+                        <td>Czarina Svetlana Sy</td>
                     </tr>
                     <tr>
                         <th>StudentID: </th>
-                        <td>{{student.username}}</td>
+                        <td>143843</td>
                     </tr>
                     <tr>
                         <th>Email: </th>
-                        <td>{{student.email}}</td>
+                        <td>czarina@mail.com</td>
                     </tr>
                     <tr>
                         <th>Mobile Number: </th>
-                        <td>{{student.contact}}</td>
+                        <td>09166666666</td>
                     </tr>
                     <tr>
                         <th>Address: </th>
-                        <td>{{student.street_name}}, {{student.city}}</td>
+                        <td>123 Street, 456 Lane, 789 Avenue</td>
                     </tr>
                     <tr>
                         <th>Emergency Contact: </th>
-                        <td>{{student.emergency_contact}}.</td>
+                        <td>Czarina Sy, Sr.</td>
                     </tr>
                     <tr>
                         <th>Birthday: </th>
-                        <td>{{student.birthday}}</td>
+                        <td>October 31, 1997</td>
                     </tr>
                 </table>
                 <br>
@@ -71,5 +67,5 @@
                     </div>
                 </div>            
 	       </div>
-    {% endblock %}
+    </body>
 </html>

@@ -140,7 +140,7 @@ def student_list(request):
         return redirect('invalid_login')
     else:
         students =  Student.objects.filter(teacher = request.user )
-        context = {'students':students}
+        context = {'students':students, 'user':request.user}
 
         return render(request,'all_students/allStudents_tutor.html',context)
 
@@ -172,6 +172,14 @@ def module_tutor(request,ModuleTitle):
         context = {'module':module, 'user':request.user}
     return render(request, 'module/module_tutor.html', context)
      
+def module_student(request,ModuleTitle):
+    # if not request.user.is_authenticated or request.user.user_type == "TU":
+    #     return redirect('invalid_login')
+    # else:
+    module = Module.objects.get(ModuleTitle = ModuleTitle)
+    context = {'module':module, 'user':request.user}
+    return render(request, 'module/module_student.html', context)
+
 def module_upload(request):
     if not request.user.is_authenticated or request.user.user_type == "ST":
         return redirect('invalid_login')

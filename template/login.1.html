@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>Log-in | NOODLE</title>
+        <link href = "{% static 'my_app/login-style.css' %}" type = "text/css" rel = "stylesheet">
+    </head>
+
+    <body>
+
+        <div id = "main">
+            <div id = "top">
+                <h3 style = "text-align: left; float: none; padding-left: 20px">LOG-IN</h3>
+            </div>
+
+            <div id="content">
+                
+                <form method="POST" name="myForm">
+                    {% csrf_token %}
+                    {{form}}
+                    <br>
+                    <br>
+                    <button class = "btn btn-outline-info" type="submit">Login</button>
+                </form>
+            </div>
+            
+        </div>
+    </body>
+</html>

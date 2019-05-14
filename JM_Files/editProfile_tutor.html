@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Profile | NOODLE</title>
+	<link href = "editProfile-style.css" type = "text/css" rel = "stylesheet">
+</head>
+
+<body>
+
+	<div id = "main">
+		<div id = "top">
+			<h3 style = "text-align: left; float: left; padding-left: 20px">EDIT PROFILE</h1>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h1>
+		</div>
+
+		<div id = "content">
+            <form action="/action_page.php" method="get" name="myForm">
+	            <label>Name: </label>
+			        <input type="text" name="name"><br>
+			    <label>Tutor ID: </label>
+			        <input type="text" name="studentID"><br>
+			    <label>Email: </label>
+			        <input type="text" name="email"><br>
+			    <label>Mobile Number: </label>
+			        <input type="text" name="mobileNo"><br>
+			    <label>Birthday:  </label>
+			        <input type="text" name="bday"><br>
+            <br>
+
+    	<div id = "button">
+            <input type="button" onclick="formSubmit()" value="Save" align="right" width="48" height="48">
+            </form>
+        </div>
+
+		</div>
+
+	</div>
+    
+</body>
+</html>

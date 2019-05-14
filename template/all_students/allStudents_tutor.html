@@ -16,7 +16,7 @@
 	<div id = "main">
 		<div id = "top">
 			<h1 style = "text-align: left; float: left; padding-left: 20px">ALL STUDENTS</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h1>
+			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h1>
 		</div>
 
 		<div id = "content">
@@ -34,8 +34,8 @@
 								<a href = 'profile/students/cross/{{ s.user.username }}'>{{s.user.last_name}}, {{s.user.first_name}}</a>
 							</td>
 							<td>{{s.user.username}}</td>
+							<td>{{s.user.email}}</td>
 							<td>{{s.user.contact}}</td>
-							<td>{{s.user.birthday}}</td>
 					</tr>
 					{% endfor %}
 

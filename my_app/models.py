@@ -57,6 +57,13 @@ class Module(models.Model):
     def filename(self):
         return os.path.basename(self.file.name)
 
+class Submissions(model.Model):
+	HomeWorkSubmissionID = models.CharField(max_length = 40, unique = True)
+	ContentFile = models.CharField(max_length = 40, unique = True)
+	StudentID = models.CharField(max_length = 40, unique = True)
+	HWDetailID = models.CharField(max_length = 40, unique = True)
+	CommentID = models.CharField(max_length = 40, unique = True)
+	
 # class UserModel (models.Model):
 #     STUDENT = 'ST'
 #     TUTOR = 'TU'

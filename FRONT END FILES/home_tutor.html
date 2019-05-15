@@ -1,36 +1,71 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>TUTOR HOME</title>
-	<link href = "home-style.css" type = "text/css" rel = "stylesheet">
-</head>
+    <head>
+        <title>Home | NOODLE</title>
+        <link href = "home-style.css" type = "text/css" rel = "stylesheet">
+    </head>
 
-<body>
-
-	<div id = "main">
+    <body>
+        
+        <div id = "main">
 		<div id = "top">
-			<h1 style = "text-align: left; float: left; padding-left: 20px">HOMEPAGE</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h1>
+			<h3 style = "text-align: left; float: left; padding-left: 20px">HOMEPAGE</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: BORJA, John Mark</h3>
 		</div>
-
-		<div id = "content">
-                <center>
+        <br>
+        <div class="split left">
+            <div class="centered">
+                <div id = "content-tutor">
+                    <input type="button" onclick="location.href='tutorProfile_tutorProfile.html'" value="Tutor Profile">
+                    <br>
+                    <input type="button" onclick="location.href='allStudents_tutor.html'" value="Students">
+                    <input type="button" onclick="location.href='allModules_tutor.html'" value="All Modules">
+                </div>
+            </div>
+            </div>
+        <div class = "split right">
+            <div class="centered">
+                <div id = "news">
+                    <h4>What's New?</h4>
                     <table>
+                        <!--latest goes on top-->
+                        <!--max three modules-->
                         <tr>
-                            <td><a href = "tutorProfile_tutor.html">Tutor Profile</a></td>
+                            <th>Module Title</th>
+                            <th>Date Uploaded</th>
                         </tr>
-
                         <tr>
-                            <td><a href = "allStudents_tutor.html">Students</a></td>
+                            <td><a href="module_tutor.html">Module 3: C++</a></td>
+                            <td>May 1, 2019</td>
                         </tr>
                         <tr>
-                            <td><a href = "allModules_tutor.html">All Modules</a></td>
+                            <td><a href="module_tutor.html">Module 2: Java</a></td>
+                            <td>April 1, 2019</td>
+                        </tr>
+                        <tr>
+                            <td><a href="module_tutor.html">Module 1: Python</a></td>
+                            <td>March 1, 2019</td>
+                        </tr>       
+                    </table>
+                </div>
+                <!--optional-->
+                <div id = "due">
+                    <h4>Due This Week</h4>
+                    <table>
+                        <!--check if this week-->
+                        <tr>
+                            <td><a href="module_tutor.html">Module 3: C++</a></td>
+                            <td>May 1, 2019</td>
                         </tr>
                     </table>
-                </center>	
+                </div>
+                <!--end of optional-->
             </div>
+        </div>
+		
+        
+        
 
-	</div>
-
-</body>
+	   </div>
+    </body>
 </html>

@@ -25,7 +25,7 @@
 
 					<tr>
 						<th style = "padding-bottom: 25px; padding-left: 20px">
-							<a href = "{{module.file.url}}">DOWNLOAD File Here!</a>
+							<a href = "#">DOWNLOAD File Here!</a>
 						</th>
 					</tr>
 
@@ -61,29 +61,21 @@
 						<th>Comments:</th>
 					</tr>
 					<tr>
-						{% if submission %}
-						<td>Homework Submitted!</td>
-						{% else %}
-						<td>No Submission</td>
-						{% endif %}
-
-						{% for submissions in submission%}
-						{% if submission %}
-						<td>{{ submissions.Comment }}</td>
-						{% endif %}
-						{% endfor %}
+						<td>No Submission!</td>
+						<td>n/a</td>
 					</tr>
 				</table>
-				
+
 			</div>
 		</div>
-		{% if not submission %}
-		<form method="post" enctype="multipart/form-data">
+			
+            <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}<button type="submit">Submit</button>
        		</form>
+			
+            
 		</div>
-		{% endif %}
 	</div>
 	{% endblock %}
 </html>

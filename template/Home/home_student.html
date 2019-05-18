@@ -1,29 +1,77 @@
-{% extends 'navigationbar_student.html' %}
+{% extends "navigationbar_student.html" %}
 <!DOCTYPE html>
 <html>
-<head>
-		{% load static %}
-	<title>{% block title %}Home | NOODLE{% endblock %}</title>
-	{% block head %}
-	<link href = "{% static 'my_app/home-style.css' %}" type = "text/css" rel = "stylesheet">
-	{% endblock %}
-</head>
+    <head>
+        {% load static %}
+        <title>{% block title %}Home | NOODLE{% endblock %} </title>
+        {% block head %}
+        <link href = "{% static 'my_app/home-style.css'%}" type = "text/css" rel = "stylesheet">
+        {% endblock %}
+    </head>
 
-{% block body %}
-
-	<div id = "main">
+    {% block body %}
+        
+        <div id = "main">
 		<div id = "top">
-			<h1 style = "text-align: left; float: left; padding-left: 20px">HOMEPAGE</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h1>
+			<h3 style = "text-align: left; float: left; padding-left: 20px">HOMEPAGE</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h3>
 		</div>
+        <br>
+        <div class="split left">
+            <div class="centered">
+                <div id = "content-student">
+                    <input type="button" onclick="location.href='{% url 'user_profile'%}'" value="Student Profile">
+                    <br>
+                    <input type="button" onclick="location.href='{% url  'module_list' %}'" value="All Modules">
+                </div>
+            </div>
+            </div>
+        <div class = "split right">
+            <div class="centered">
+                <div id = "news">
+                    <h4>What's New?</h4>
+                    <table>
+                        <!--latest goes on top-->
+                        <!--max three modules-->
+                        <tr>
+                            <th>Module Title</th>
+                            <th>Date Uploaded</th>
+                        </tr>
+                        {% for mod in new_modules %}
+                        <tr>
+                            <td><a href="modules/student/{{ mod.ModuleTitle }}">{{mod.ModuleTitle}}</a></td>
+                            <td>{{ mod.pub_date }}</td>
+                        </tr>
+                        {% endfor %}
+                        <!-- <tr>
+                            <td><a href="module_student.html">Module 2: Java</a></td>
+                            <td>April 1, 2019</td>
+                        </tr>
+                        <tr>
+                            <td><a href="module_student.html">Module 1: Python</a></td>
+                            <td>March 1, 2019</td> -->
+                        </tr>       
+                    </table>
+                </div>
+                <!--optional-->
+                <div id = "due">
+                    <h4>Due This Week</h4>
+                    <table>
+                        <!--check if this week-->
+                        <tr>
+                            <td><a href="module_student.html">{Module 3: C++}}</a></td>
+                            <td>May 1, 2019</td>
+                        </tr>
 
-		<div id = "content">
-			<a href = "{% url 'user_profile'%}"><h3>Student Profile</h3></a>
-            <a href = "calendar.html"><h3>Calendar</h3></a>
-            <a href = "{% url 'module_list' %}"><h3>All Modules</h3></a>
-		</div>
+                    </table>
+                </div>
+                <!--end of optional-->
+            </div>
+        </div>
+		 
+        
+        
 
-	</div>
-
-{% endblock %}
+	   </div>
+    {% endblock %}
 </html>

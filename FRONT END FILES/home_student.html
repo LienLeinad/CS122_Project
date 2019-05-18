@@ -8,24 +8,64 @@
     <body>
         
         <div id = "main">
-            <div id = "top">
-                <h3 style = "text-align: left; float: left; padding-left: 20px">HOMEPAGE</h3>
-                <h3 style = "text-align: right; float: right; padding-right: 20px">Name: SY, Czarina Svetlana</h3>
+		<div id = "top">
+			<h3 style = "text-align: left; float: left; padding-left: 20px">HOMEPAGE</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: SY, Czarina Svetlana</h3>
+		</div>
+        <br>
+        <div class="split left">
+            <div class="centered">
+                <div id = "content-student">
+                    <input type="button" onclick="location.href='studentProfile_student.html'" value="Student Profile">
+                    <br>
+                    <input type="button" onclick="location.href='allModules_student.html'" value="All Modules">
+                </div>
             </div>
-
-            <div id = "content">
-                <center>
+            </div>
+        <div class = "split right">
+            <div class="centered">
+                <div id = "news">
+                    <h4>What's New?</h4>
                     <table>
+                        <!--latest goes on top-->
+                        <!--max three modules-->
                         <tr>
-                            <td><a href = "studentProfile_student.html">Student Profile</a></td>
+                            <th>Module Title</th>
+                            <th>Date Uploaded</th>
+                        </tr>
+                        <tr>
+                            <td><a href="module_student.html">Module 3: C++</a></td>
+                            <td>May 1, 2019</td>
+                        </tr>
+                        <tr>
+                            <td><a href="module_student.html">Module 2: Java</a></td>
+                            <td>April 1, 2019</td>
+                        </tr>
+                        <tr>
+                            <td><a href="module_student.html">Module 1: Python</a></td>
+                            <td>March 1, 2019</td>
+                        </tr>       
+                    </table>
+                </div>
+                <!--optional-->
+                <div id = "due">
+                    <h4>Due This Week</h4>
+                    <table>
+                        <!--check if this week-->
+                        <tr>
+                            <td><a href="module_student.html">Module 3: C++</a></td>
+                            <td>May 1, 2019</td>
                         </tr>
 
-                        <tr>
-                            <td><a href = "allModules_student.html">All Modules</a></td>
-                        </tr>
                     </table>
-                </center>	
+                </div>
+                <!--end of optional-->
             </div>
         </div>
+		
+        
+        
+
+	   </div>
     </body>
 </html>

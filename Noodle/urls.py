@@ -30,12 +30,15 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name = 'logout.html'), name = 'logout'),
     path('login/modules/',views.module_list, name = 'module_list'),
     path('login/modules/<ModuleTitle>', views.module_tutor, name = 'module_tutor'),
-    path('login/modules/<ModuleTitle>',views.module_student,name = 'module_student'),
+    path('login/modules/student/<ModuleTitle>',views.module_student,name = 'module_student'),
     path('login/module/<ModuleTitle>/<str:file_name>', views.send_file, name = 'send_file'),
     path('login/students', views.student_list, name = 'student_list'),
     path('login/modules/upload/', views.module_upload,name = 'module_upload'),
     path('reg', views.register_choice, name = 'choose'),
     path('login/profile/tutor', views.cross_profile_student, name = 'cross_profile_student'),
-    path('login/profile/students/cross/<user_name>',views.cross_profile_tutor,name = 'cross_profile_tutor')
-
+    path('login/profile/students/cross/<user_name>',views.cross_profile_tutor,name = 'cross_profile_tutor'),
+    path('modules/<str:file_name>', views.send_file, name = 'module_download'),
+    path('login/modules/submission/modules/<str:file_name>', views.send_file, name = 'submission_download'),
+    path('login/modules/upload/upload/<ModuleTitle>', views.homework_upload, name = 'homework_upload'),
+    path('login/modules/<ModuleTitle>/module/comment/<id>', views.comment_upload, name = 'comment'),
  ]

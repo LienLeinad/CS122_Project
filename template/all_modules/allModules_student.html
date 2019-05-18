@@ -29,7 +29,7 @@
                             {% for m in Module %}
                             <tr>
                                 <td>
-                                    <a href = "{% url 'module_list' %}{{ m.ModuleTitle }}">{{m.ModuleTitle}}</a>
+                                    <a href = "{% url 'module_list' %}student/{{ m.ModuleTitle }}">{{m.ModuleTitle}}</a>
                                 </td>
                                 <td>{{m.pub_date}}</td>
                                 <td>Nice one!</td>

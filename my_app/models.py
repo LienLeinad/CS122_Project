@@ -36,33 +36,47 @@ class CustomUser(AbstractUser):
     emergency_contact = models.CharField(
         max_length = 50
     )
-    birthday = models.DateField(default = now, editable = True)
-    
+    birthday = models.DateField(null = True,blank = True,editable = True)
+    #username is not seen, it'sbuilt in, userID is also the object ID
     def __str__(self):
         return self.username
 
 class Student(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)#PK and FK
     #related_name just makes it so that I can have two foreign keys in this model that refers to the same table which is CustomUser
     teacher = models.ForeignKey(CustomUser,related_name='CustomUser', on_delete = models.CASCADE, blank = True)#https://stackoverflow.com/questions/2642613/what-is-related-name-used-for-in-django
     def __str__(self):
         return str(self.user)
 
 class Module(models.Model):
-    ModuleTitle = models.CharField(max_length = 40, unique = True)
+    ModuleTitle = models.CharField(max_length = 40, unique = True)#PK
     Description = models.TextField(max_length = 500)
     pub_date = models.DateTimeField(auto_now_add = True, editable = False)
-    Tutor = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
-    file = models.FileField(upload_to='modules/',blank = True)
+    Tutor = models.ForeignKey(CustomUser, on_delete = models.CASCADE)#FK to CustomUser
+    file = models.FileField(blank = True)
     def filename(self):
         return os.path.basename(self.file.name)
+    def __str__(self):
+        return str(self.ModuleTitle)
 
-class Submissions(model.Model):
-	HomeWorkSubmissionID = models.CharField(max_length = 40, unique = True)
-	ContentFile = models.CharField(max_length = 40, unique = True)
-	StudentID = models.CharField(max_length = 40, unique = True)
-	HWDetailID = models.CharField(max_length = 40, unique = True)
-	CommentID = models.CharField(max_length = 40, unique = True)
+
+
+class HomeworkDetail(models.Model):
+    ModuleTitle = models.ForeignKey(Module, on_delete = models.CASCADE) #PK/FK
+    pub_date = models.DateField(auto_now_add = True, editable = False)
+    deadline = models.DateField(default = now, editable = True)
+    details = models.TextField(default='No Details')
+    def __str__(self):
+        return str(self.ModuleTitle)
+
+class HomeworkSubmission(models.Model):
+	# pk = object id
+    Homework = models.ForeignKey(HomeworkDetail, on_delete = models.CASCADE)
+    ContentFile = models.FileField(blank = True)
+    StudentID = models.ForeignKey(Student,on_delete = models.CASCADE)
+    Comment = models.TextField(default = "", null = True)
+
+
 	
 # class UserModel (models.Model):
 #     STUDENT = 'ST'

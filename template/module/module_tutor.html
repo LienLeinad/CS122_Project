@@ -27,7 +27,7 @@
 
 					<tr>
 						<th style = "padding-bottom: 25px; padding-left: 20px">
-							<a href = "\my_app\static\modules\151_Curitiba.p65.pdf" download>Download Presentation File</a>
+							<a href = "{{module.file.url}}" >Download Presentation File</a>
 						</th>
 					</tr>
 
@@ -39,16 +39,21 @@
 					<tr>
 						<th>Homework </th>
 					</tr>
-
+					{% if HomeworkDetails %}
 					<tr>
 						<td>Due date: </td>
-						<td>03 March 2019</td>
+						<td>{{HomeworkDetails.deadline}}</td>
 					</tr>
 
 					<tr>
 						<td>Instructions: </td>
-						<td>Create your first website</td>
+						<td>{{HomeworkDetails.details}}</td>
 					</tr>
+					{% else %}
+					<tr>
+						<td>No Homework posted</td>
+					</tr>
+					{% endif %}
 				</table>
 
 				<table id = "tab2" border="1">
@@ -57,18 +62,30 @@
 						<th>Submission</th>
 						<th>Comments</th>
 					</tr>
-
+					{% for student in Students %}
+					
 					<tr>
-						<td>BORJA, John Mark R.</td>
-						<td>01 March 2019</td>
-						<td>Don't forget DOCTYPE! HTML at the very start of your code</td>
+						<td>{{ student.user.first_name }} {{ student.user.last_name }}</td>
+
+						{% for sub in submission_list %}
+						{% if sub.StudentID == student and sub %}
+						<td>submission given</td>
+						
+						{% if sub.Comment %}
+						<td>{{sub.Comment}}</td>
+						{% else %}
+						<td><a href = "{{module.ModuleTitle}}/module/comment/{{ sub.id }}">Comment Here please</a></td>
+						{% endif %}
+						{% endif %}
+						{% endfor %}
+						
 					</tr>
-
-					<tr>
+					{% endfor %}
+					<!-- <tr>
 						<td>DELA CRUZ, Juan R.</td>
 						<td>02 March 2019</td>
 						<td>Well done!</td>
-					</tr>
+					</tr> -->
 
 				</table>
 

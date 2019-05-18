@@ -1,11 +1,15 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import SampleModel, Student, CustomUser, Module
+from .models import SampleModel, Student, CustomUser, Module,HomeworkDetail, HomeworkSubmission
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm,StudentRegistrationForm,ModuleUploadForm
+from .forms import UserRegisterForm,HomeWorkUpload, UserUpdateForm,StudentRegistrationForm,ModuleUploadForm,HomeworkSubmissionForm,CommentForm
 from django.contrib.auth.decorators import login_required
 from wsgiref.util import FileWrapper
 import os, tempfile, zipfile, mimetypes, io
+from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+from django.db import connection
 # Create your views here.
 def index(request):
     name_list = SampleModel.objects.all()
@@ -169,16 +173,41 @@ def module_tutor(request,ModuleTitle):
         return redirect('invalid_login')
     else:
         module = Module.objects.get(ModuleTitle = ModuleTitle)
-        context = {'module':module, 'user':request.user}
+        HomeworkDetails = HomeworkDetail.objects.get(ModuleTitle = module)
+        Students = Student.objects.filter(teacher = request.user)
+       
+        submission_list = HomeworkSubmission.objects.filter(Homework = HomeworkDetails).all()
+        # with connection.cursor() as cursor:
+        #     cursor.execute("SELECT * FROM Student")
+        #     submission_list = cursor.fetchall()
+        print(submission_list)
+        context = {
+        'module':module,
+        'HomeworkDetails':HomeworkDetails,
+        'user':request.user,
+        'submission_list':submission_list,
+        'Students':Students,
+        }
     return render(request, 'module/module_tutor.html', context)
      
 def module_student(request,ModuleTitle):
-    # if not request.user.is_authenticated or request.user.user_type == "TU":
-    #     return redirect('invalid_login')
-    # else:
-    module = Module.objects.get(ModuleTitle = ModuleTitle)
-    context = {'module':module, 'user':request.user}
-    return render(request, 'module/module_student.html', context)
+    if not request.user.is_authenticated or request.user.user_type == "TU":
+        return redirect('invalid_login')
+    else:
+        module = Module.objects.get(ModuleTitle = ModuleTitle)
+        homework = HomeworkDetail.objects.get(ModuleTitle = module)
+
+        if request.method == "POST":
+            form = HomeworkSubmissionForm(request.POST,request.FILES)
+            if form.is_valid():
+                HomeworkSubmissions = HomeworkSubmission(Homework = homework, ContentFile = form.cleaned_data.get('ContentFile'), StudentID = Student.objects.get(user = request.user))
+                HomeworkSubmissions.save()
+                return redirect('module_student', ModuleTitle = ModuleTitle)
+        form = HomeworkSubmissionForm()
+        submission = HomeworkSubmission.objects.filter(StudentID = Student.objects.get(user = request.user))
+        print(submission)
+        context = {'module':module, 'user':request.user, 'homework':homework, 'form':form, 'submission':submission}
+        return render(request,'module/module_student.html',context)
 
 def module_upload(request):
     if not request.user.is_authenticated or request.user.user_type == "ST":
@@ -195,10 +224,24 @@ def module_upload(request):
                 module = Module(ModuleTitle = ModuleTitle, Description = Description, Tutor = Tutor, file = file)
                 module.save() 
                 print('form is valid')
-                return redirect('module_list')
+                return redirect('upload/%s' %(ModuleTitle))
         form = ModuleUploadForm()
         context = {'form':form}
         return render(request, 'all_modules/module_upload/module_upload.html',context)
+
+def homework_upload(request, ModuleTitle):
+    if request.method == "POST":
+        form = HomeWorkUpload(data = request.POST)
+        if form.is_valid():
+            ModuleTitle_temp = ModuleTitle
+            deadline = form.cleaned_data.get('deadline')
+            details = form.cleaned_data.get('details')
+            HomeWorkUploaded = HomeworkDetail(ModuleTitle = Module.objects.get(ModuleTitle = ModuleTitle_temp), deadline = deadline, details = details)
+            HomeWorkUploaded.save()
+            return redirect('module_list')
+    form = HomeWorkUpload()
+    context = {'form':form}
+    return render(request,'all_modules/module_upload/homework_upload.html', context)
 
 def module_list(request):
     if not request.user.is_authenticated:
@@ -211,11 +254,28 @@ def module_list(request):
             return render(request, 'all_modules/allModules_tutor.html',context)
         elif user.user_type == "ST":
             return render(request,'all_modules/allModules_student.html',context)
+  
+
 def send_file(request, file_name):
     filename = os.path.join(settings.MEDIA_ROOT, file_name)
     wrapper = FileWrapper(open(filename, 'rb'))
     content_type = mimetypes.guess_type(filename)[0]
     response = HttpResponse(wrapper, content_type=content_type)
     response['Content-Length'] = os.path.getsize(filename)    
-    response['Content-Disposition'] = "attachment; filename=%s"%file_name
+    response['Content-Disposition'] = "attachment; filename=%s"%file_name # I honestly have no idea why this works, just took it off a previous project's code (BioPhil website), I'll cite cite it in the COA
     return response
+
+def comment_upload(request,ModuleTitle, id):
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            homework = HomeworkSubmission.objects.get(id = id)
+            homework.Comment = form.cleaned_data.get('Comment')
+            homework.save()
+            return redirect('module_tutor', ModuleTitle = ModuleTitle)
+    form = CommentForm()
+    return render(request,'module/comment/comment.html', {'form':form})
+
+def my_custom_sql():
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT CustomUser.first_name, CustomUser.last_name FROM CustomUser JOIN Student ON CustomUser.id = Student.id LEFT JOIN HomeworkSubmission ON ")

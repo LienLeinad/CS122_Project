@@ -67,7 +67,9 @@ def profile(request):
             street_name = user.street_name
             city = user.city
             birthday = user.birthday
-            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'city': city, 'street_name': street_name, 'birthday': birthday, 'student':student,'teacher':teacher}
+            new_modules = Module.objects.order_by('-pub_date')[:3]
+            latest_module = Module.objects.order_by('-pub_date').get()[0]
+            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'city': city, 'street_name': street_name, 'birthday': birthday, 'student':student,'teacher':teacher,'new_modules':new_modules}
             return render(request,'Profiles/studentProfile_student.1.html', context)
         elif user_type == 'TU':
             first_name = user.first_name
@@ -75,7 +77,9 @@ def profile(request):
             user_name = user.username
             contact = user.contact
             email = user.email
-            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact}
+            new_modules = Module.objects.order_by('-pub_date')[:3]
+            latest_module = Module.objects.order_by('-pub_date').get()[0]
+            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'new_modules':new_modules, 'latest_module':latest}
             return render(request,'Profiles/tutorProfile_tutor.1.html', context)
     
 
@@ -88,13 +92,17 @@ def login(request):
         if user_type == 'ST':
             first_name = user.first_name
             last_name = user.last_name
-            context = {'first_name': first_name, 'last_name':last_name}
+            new_modules = Module.objects.order_by('-pub_date')[:3]
+            latest_module = Module.objects.order_by('-pub_date').filter()[0]
+            context = {'first_name': first_name, 'last_name':last_name,'latest_module':latest_module,'new_modules':new_modules}
 
             return render(request,'Home/home_student.html', context)
         elif user_type == 'TU':
             first_name = user.first_name
             last_name = user.last_name
-            context = {'first_name': first_name, 'last_name':last_name}
+            new_modules = Module.objects.order_by('-pub_date')[:3]
+            latest_module = Module.objects.order_by('-pub_date').filter()[0]
+            context = {'first_name': first_name, 'last_name':last_name,'latest_module':latest_module,'new_modules':new_modules}
             return render(request,'Home/home_tutor.html', context)
 
 def user_update(request, username):
@@ -275,7 +283,3 @@ def comment_upload(request,ModuleTitle, id):
             return redirect('module_tutor', ModuleTitle = ModuleTitle)
     form = CommentForm()
     return render(request,'module/comment/comment.html', {'form':form})
-
-def my_custom_sql():
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT CustomUser.first_name, CustomUser.last_name FROM CustomUser JOIN Student ON CustomUser.id = Student.id LEFT JOIN HomeworkSubmission ON ")

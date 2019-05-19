@@ -1,0 +1,31 @@
+How to install:
+1) run install-db.bat
+2) make your own admin account (you can use asd@asd.com as your email)
+3) done!
+
+How to access Admin page (For deleting modules, getting homework from students, editing profiles, etc)
+1) run the server (see below)
+2) type in the url of an opened browser "localhost:8000/admin"
+3) enter your admin account credentials (you should already have on after you run install-db.bat)
+4) done!
+
+How to run the server
+1) run "runserver.bat"
+2) done!
+*** You can turn the server off by clicking the close button from the command prompt that pops up
+
+What to do once you've gone past the semester?
+delete the ff files:
+db.sqlite3
+from my_app/migrations:
+0001_initial.py
+from my_app/migrations/_pycache_:
+0001_initial.cpython-37.pyc
+
+REMINDER: DELETING THESE WILL PERMANENTLY DELETE ALL YOUR FILES FROM THE DATABASE, DO SO ONLY WHEN NEEDED!
+
+important links
+
+localhost:8000/home - Login Screen for both tutors and Students
+localhost:8000/register - registration screen
+localhost:8000/login - Home screen

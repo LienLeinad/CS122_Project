@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    
-    <form method = "POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class = "btn btn-outline-info" type="submit">Upload</button>
-    </form>
 
+    {% extends 'navigationbar_tutor.html' %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        {% load static %}
+        <title>{% block title %} Homework Upload | NOODLE {% endblock %}</title>
+        {% block head %}
+        <link href = "{%static 'my_app/module-upload.css'%}" type = "text/css" rel = "stylesheet">
+        {% endblock %}
+    </head>
+   
+</head>
+{% block body %}
     
-    
-    <a href =" {% url 'module_list' %}">module list</a>
-</body>
+    <br><br>
+    <div class = "content-section">
+        <form enctype="multipart/form-data" method = "POST">
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                <legend class = "border-bottom mb-4" style = 'font-size:40px'> Upload Homework Here</legend>
+                    {{form.as_p }}
+                
+            </fieldset>
+            <div class = "form-group">
+                <button class = "btn btn-outline-info" type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
 </html>

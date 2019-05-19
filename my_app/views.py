@@ -211,7 +211,7 @@ def module_student(request,ModuleTitle):
                 HomeworkSubmissions.save()
                 return redirect('module_student', ModuleTitle = ModuleTitle)
         form = HomeworkSubmissionForm()
-        submission = HomeworkSubmission.objects.filter(StudentID = Student.objects.get(user = request.user))
+        submission = HomeworkSubmission.objects.filter(StudentID = Student.objects.get(user = request.user),Homework = homework)
         print(submission)
         context = {'module':module, 'user':request.user, 'homework':homework, 'form':form, 'submission':submission}
         return render(request,'module/module_student.html',context)

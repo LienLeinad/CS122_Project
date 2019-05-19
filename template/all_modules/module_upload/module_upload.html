@@ -1,13 +1,20 @@
+{% extends 'navigationbar_tutor.html' %}
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
+    <title>{% block title %} Module Upload | NOODLE {% endblock %}</title>
+    {% block head %}
+    <link href = "{%static 'my_app/module-upload.css'%}" type = "text/css" rel = "stylesheet">
+    {% endblock %}
 </head>
-<body>
+{% block body %}
+<br><br>
     <div class = "content-section">
         <form enctype="multipart/form-data" method = "POST">
             {% csrf_token %}
             <fieldset class = "form-group">
-                <legend class = "border-bottom mb-4"> Upload Module Here</legend>
+                <legend class = "border-bottom mb-4" style = 'font-size:40px'> Upload Module Here</legend>
                     {{form.as_p }}
               
             </fieldset>
@@ -16,5 +23,5 @@
             </div>
         </form>
     </div>
-</body>
+{% endblock %}
 </html>

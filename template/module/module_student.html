@@ -9,23 +9,36 @@
 		{% endblock %}
     </head>
     {% block body %}
-		<br>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Module | NOODLE </title>
+        <link href = "module-style.css" type = "text/css" rel = "stylesheet">
+    </head>
+
+    <body>
+	</div>
         <div id = "main">
             <div id = "top">
                 <h3 style = "text-align: left; float: left; padding-left: 20px">MODULE</h3>
                 <h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h3>
             </div>
-            
+			
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
             <div id = "content">
 			<div id = "table">
 				<table id = "tab1">
 					<tr>
-						<th>{{module.ModuleTitle}}</th>
+						<th>Introduction to HTML 1</th>
 					</tr>
 
 					<tr>
 						<th style = "padding-bottom: 25px; padding-left: 20px">
-							<a href = "{{module.file.url}}">DOWNLOAD File Here!</a>
+							<a href = "{{module.file.url}}">DOWNLOAD Module File Here!</a>
 						</th>
 					</tr>
 
@@ -34,7 +47,6 @@
 						<td style = "padding-bottom: 25px">{{module.pub_date}}</td>
 						<td style = "padding-bottom:25px">Uploaded by:</td>
 						<td style = "padding-bottom: 25px">{{ module.Tutor.first_name }} {{ module.Tutor.last_name }}| {{ module.Tutor.username }}</td>
-						
 					</tr>
 
 					<tr>
@@ -48,7 +60,7 @@
 
 					<tr>
 						<td>Instructions: </td>
-						<td>{{homework.details}}</td>
+						<td class = 'deets'>{{homework.details}}</td>
 					</tr>
                     
                     <tr>
@@ -58,32 +70,35 @@
                     
                     <tr>
 						<th>Submission status:</th>
-						<th>Comments:</th>
-					</tr>
-					<tr>
-						{% if submission %}
-						<td>Homework Submitted!</td>
-						{% else %}
-						<td>No Submission</td>
-						{% endif %}
+                        <th>Comments:</th>
+                    </tr>
 
-						{% for submissions in submission%}
-						{% if submission %}
-						<td>{{ submissions.Comment }}</td>
-						{% endif %}
-						{% endfor %}
-					</tr>
+                    <tr>
+							{% if submission  %}
+							<td>Homework Submitted!</td>
+							{% else %}
+							<td>No Submission</td>
+							{% endif %}
+	
+							{% for submissions in submission%}
+							{% if submission %}
+							<td>{{ submissions.Comment }}</td>
+							{% endif %}
+							{% endfor %}
+                    </tr>
+
 				</table>
-				
+
 			</div>
 		</div>
 		{% if not submission %}
-		<form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form}}<button type="submit">Submit</button>
-       		</form>
+            <form method="post" enctype="multipart/form-data">
+            	{% csrf_token %}
+            	{{form}}<button type="submit">Submit</button>
+        </form>
+		{% endif %}   
+            
 		</div>
-		{% endif %}
 	</div>
-	{% endblock %}
+    {% endblock %}
 </html>

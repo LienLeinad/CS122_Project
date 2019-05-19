@@ -1,43 +1,59 @@
-{% extends 'navigationbar_tutor.html' %}
+{% extends "navigationbar_tutor.html" %}
 <!DOCTYPE html>
 <html>
 <head>
 	{% load static %}
 	<title>{% block title %}ALL STUDENTS{% endblock %}</title>
 	{% block head %}
-	<link href = "{% static 'my_app/allStudents-style.css' %}" type = "text/css" rel = "stylesheet">
+	<link href = "{% static 'my_app/allStudents-style.css'%}" type = "text/css" rel = "stylesheet">
 	{% endblock %}
 </head>
 
+
 {% block body %}
-	<br>
 
 
 	<div id = "main">
 		<div id = "top">
-			<h1 style = "text-align: left; float: left; padding-left: 20px">ALL STUDENTS</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h1>
+			<h3 style = "text-align: left; float: left; padding-left: 20px">ALL STUDENTS</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.first_name}}, {{ user.last_name }}</h3>
 		</div>
 
 		<div id = "content">
+            <!--ARRANGE NAMES APHABETICALLY-->
 			<div id = "table">
 				<table>
-					<tr>
-						<th>Student Name</th>
-						<th>Student ID</th>
-						<th>Email</th>
-						<th>Mobile Number</th>
-					</tr>
+                    <div id="first-child">
+                        <tr>
+                            <th>ID Number</th>
+                            <th>Student Name</th>
+                            <th>Email</th>
+                            <th>Mobile Number</th>
+                        </tr>
+                    </div>
+					
 					{% for s in students %}
 					<tr>
-							<td>
-								<a href = 'profile/students/cross/{{ s.user.username }}'>{{s.user.last_name}}, {{s.user.first_name}}</a>
-							</td>
-							<td>{{s.user.username}}</td>
-							<td>{{s.user.email}}</td>
-							<td>{{s.user.contact}}</td>
+						<td>{{s.user.username}}</td>
+                        <td><a href="profile/students/cross/{{s.user.username}}">{{s.user.last_name}}, {{s.user.first_name}}</a></td>
+						<td>{{s.user.email}}</td>
+						<td>{{ s.user.contact }}</td>
 					</tr>
 					{% endfor %}
+					<!-- <tr>
+						<td>143666</td>
+                        <td><a href="studentProfile_tutor.html">SY, Czarina</a></td>
+						<td>123457</td>
+						<td>0912 345 6799</td>
+						<td>02 February 2000</td>
+					</tr>
+                    <tr>
+						<td>153666</td>
+                        <td><a href="studentProfile_tutor.html">TAN, Aldrich</a></td>
+						<td>123457</td>
+						<td>0912 345 6799</td>
+						<td>02 February 2000</td> -->
+					</tr>
 
 				</table>
 

@@ -41,4 +41,5 @@ urlpatterns = [
     path('login/modules/submission/modules/<str:file_name>', views.send_file, name = 'submission_download'),
     path('login/modules/upload/upload/<ModuleTitle>', views.homework_upload, name = 'homework_upload'),
     path('login/modules/<ModuleTitle>/module/comment/<id>', views.comment_upload, name = 'comment'),
+    path('login/profile/students/cross/modules/<ModuleTitle>', views.module_tutor, name = 'cross_module_tutor')
  ]

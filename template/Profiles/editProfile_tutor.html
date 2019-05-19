@@ -1,41 +1,38 @@
+{% extends 'navigationbar_tutor.html' %}
 <!DOCTYPE html>
 <html>
 <head>
 	{% load static %}
-	<title>EDIT PROFILE</title>
-	<link href = "{% static 'my_app/editProfile-style.css' %}" type = "text/css" rel = "stylesheet">
+	<title>{% block title %}Edit Profile | NOODLE {% endblock %} </title>
+	{% block head %}
+	<link href = "{% static 'my_app/editProfile-style.css'%}" type = "text/css" rel = "stylesheet">
+	{% endblock %}
 </head>
 
-<body>
+{% block body %}
 
 	<div id = "main">
 		<div id = "top">
-			<h1 style = "text-align: left; float: left; padding-left: 20px">EDIT PROFILE</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h1>
+			<h3 style = "text-align: left; float: left; padding-left: 20px">EDIT PROFILE</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h3>
 		</div>
 
-		<div id = "content">
+		<div id = "content-tutor">
 			<form method="POST" name="myForm">
-			{% csrf_token %}
-			{{form.as_p}}
-			<!-- Name: <input type="text" name="name" readonly>
+				{% csrf_token %}
+				<!-- Name: <input type="text" name="name" value="John Mark Borja" readonly><br>
+				Tutor ID: <input type="text" name="tutorID" value="123456" readonly><br>
+				Email: <input type="text" name="email" value="jm@mail.com" readonly><br>
+				Mobile Number: <input type="text" name="mobileNo"><br> -->
+				{{form.as_p}}
 			<br>
-			Tutor ID: <input type="text" name="tutorID" readonly>
-			<br>
-			Email: <input type="text" name="email" readonly>
-			<br>
-			Mobile Number: <input type="text" name="mobileNo">
-			<br>
-			Birthday: <input type="text" name="bday" readonly>
-			<br> -->
-            <br>
-			<!-- <input type="button" onclick="formSubmit()" value="Save" align="right" width="48" height="48"> -->
 			<button class = "btn btn-outline-info" type="submit">Save</button>
+            <!-- <input type="button" onclick="formSubmit()" value="Save" align="right" width="48" height="48"> -->
             </form>
 
 		</div>
 
 	</div>
     
-</body>
+{% endblock %}
 </html>

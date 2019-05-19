@@ -67,9 +67,7 @@ def profile(request):
             street_name = user.street_name
             city = user.city
             birthday = user.birthday
-            new_modules = Module.objects.order_by('-pub_date')[:3]
-            latest_module = Module.objects.order_by('-pub_date').get()[0]
-            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'city': city, 'street_name': street_name, 'birthday': birthday, 'student':student,'teacher':teacher,'new_modules':new_modules}
+            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'city': city, 'street_name': street_name, 'birthday': birthday, 'student':student,'teacher':teacher}
             return render(request,'Profiles/studentProfile_student.1.html', context)
         elif user_type == 'TU':
             first_name = user.first_name
@@ -77,9 +75,7 @@ def profile(request):
             user_name = user.username
             contact = user.contact
             email = user.email
-            new_modules = Module.objects.order_by('-pub_date')[:3]
-            latest_module = Module.objects.order_by('-pub_date').get()[0]
-            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact, 'new_modules':new_modules, 'latest_module':latest}
+            context = {'email': email,'first_name': first_name,'last_name':last_name,'user_name':user_name,'contact':contact,}
             return render(request,'Profiles/tutorProfile_tutor.1.html', context)
     
 
@@ -173,7 +169,10 @@ def cross_profile_tutor(request,user_name):
     else: 
         student = CustomUser.objects.get(username = user_name)
         teacher = request.user
-        context = {'student':student, 'teacher':teacher}
+        student_user= Student.objects.get(user = student)
+        submissions = HomeworkSubmission.objects.filter(StudentID = student_user)
+        modules = Module.objects.all()
+        context = {'student':student, 'teacher':teacher,'submissions':submissions,'modules':modules}
         return render(request, 'Profiles/studentProfile_tutor.html',context)
 
 def module_tutor(request,ModuleTitle):

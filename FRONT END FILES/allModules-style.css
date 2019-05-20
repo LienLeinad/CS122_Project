@@ -1,20 +1,23 @@
+html 
+{
+    height: 100%;
+}
 body
 {
-	background: #196dff;
-}
-
-#homered
-{
-	font-family: "Helvetica";
-	font-size: 13pt;
+	background-color: black;
+    background-image: linear-gradient(#182848, #11ffbd);
+    color:white;
+    background-size:auto;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #main
 {
-	width: 1400px;
-	height: 650px;
-	background: #ffffff;
-	border: solid 5px #00004c;
+	width: auto;
+	height: auto;
 
 	margin-top:  auto;
 	margin-bottom: auto;
@@ -25,65 +28,75 @@ body
 	text-align: center;
 }
 
-/* #top
+#top
 {
-
-} */
+    font-size: 20px;
+}
 
 #content
 {
-	padding-top: 40px;
+	padding-top: 30px;
+    padding-bottom: 30px;
 	clear: both;
 
-	width: 1300px;
-	height: 410px;
-	background: #b2b2ff;
+	width: auto;
+	height: auto;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
 
 	margin-top:  150px;
 	margin-bottom: auto;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 50px;
+	margin-right: 50px;
+    text-align: center;
 }
 
-#table
-{
-	padding-left: 40px;
-	text-align: left;
-}
 
-h1
-{
-	font-family:  "Helvetica";
-	font-size: 18pt;
-	color: #00004c;
-}
 
-h2
+input[type=button], input[type=submit], input[type=reset] /*buttons*/
 {
-	font-family: "Helvetica";
-	font-size: 18pt;
-	color: #00004c;
-}
-
-a
-{
-	text-decoration: none;
-}
-
-p
-{
-	font-family: "Helvetica";
-	font-size: 13pt;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 table
 {
-	width: 100%;
-	font-family: "Helvetica";
-	font-size: 13pt;
+    width:inherit;
+    border-collapse: collapse;
+    font-family: "Trebuchet MS";
+    width:100%;
 }
-
+table, th, td 
+{
+    border-collapse: collapse;
+    font-family: "Trebuchet MS";
+    font-size:18px;
+    padding: 10px 30px;
+}
 th
 {
-	padding-bottom: 25px;
+    text-align: left;
+    color:cadetblue;
+}
+td
+{
+    text-align: left;
+}
+
+a /*links*/
+{
+    font-size: 18px;
+    color:lightsalmon;
+}
+tr:not(:first-child):hover
+{
+    background-color: rgba(0, 0, 0, 0.7);
 }

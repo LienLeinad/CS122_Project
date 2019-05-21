@@ -6,7 +6,23 @@
 }
 
 
+.body-logout
+{
+    color:white;
+    background-repeat: no-repeat;
+    background-size: cover;
 
+    text-align: center;
+
+    background-color: black;
+    background-image: linear-gradient(#182848, #11ffbd);
+    color:white;
+    background-size:auto;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 .default-heading, .menu-container 
 {
     display:inline-block;

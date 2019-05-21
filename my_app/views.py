@@ -35,6 +35,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             temp = CustomUser.objects.get(username = username)
+            print(temp.query)
             if form.cleaned_data.get('user_type') == 'ST':
                 
                 if form2.is_valid():
@@ -88,18 +89,29 @@ def login(request):
         if user_type == 'ST':
             first_name = user.first_name
             last_name = user.last_name
-            new_modules = Module.objects.order_by('-pub_date')[:3]
-            latest_module = Module.objects.order_by('-pub_date').filter()[0]
-            context = {'first_name': first_name, 'last_name':last_name,'latest_module':latest_module,'new_modules':new_modules}
+            if Module.objects.all():
+                new_modules = Module.objects.order_by('-pub_date')[:3]
+                latest_module = Module.objects.order_by('-pub_date').filter()[0]
+                context = {'first_name': first_name, 'last_name':last_name,'latest_module':latest_module,'new_modules':new_modules}
+                return render(request,'Home/home_tutor.html', context)
+            else:
+                context = {'first_name': first_name, 'last_name':last_name,}
+                return render(request,'Home/home_tutor.html', context)
 
             return render(request,'Home/home_student.html', context)
         elif user_type == 'TU':
             first_name = user.first_name
             last_name = user.last_name
-            new_modules = Module.objects.order_by('-pub_date')[:3]
-            latest_module = Module.objects.order_by('-pub_date').filter()[0]
-            context = {'first_name': first_name, 'last_name':last_name,'latest_module':latest_module,'new_modules':new_modules}
-            return render(request,'Home/home_tutor.html', context)
+            if Module.objects.all():
+                new_modules = Module.objects.order_by('-pub_date')[:3]
+                print(new_modules.query)
+                latest_module = Module.objects.order_by('-pub_date').filter()[0]
+                context = {'first_name': first_name, 'last_name':last_name,'latest_module':latest_module,'new_modules':new_modules}
+                return render(request,'Home/home_tutor.html', context)
+            else:
+                context = {'first_name': first_name, 'last_name':last_name,}
+                return render(request,'Home/home_tutor.html', context)
+            
 
 def user_update(request, username):
     

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Log-in | NOODLE </title>
+        <title> Log-out | NOODLE </title>
+        {% load static %}
+        <link href = "{%static 'my_app/navigationbar-style.css'%}" type = "text/css" rel = "stylesheet">
     </head>
-    <body>
+    <body class = "body-logout">
+        <h1 style = "color:white;">Log-Out</h1>
         <h2>You have been logged out</h2>
-        <p><a href = "{% url 'login' %}">Log-in Here!</a></p>
-        <p><a href = "{% url 'register' %} ">Make an account here!</a></p>
+        <p><a href = "{% url 'login' %}" style = "color:white;font-size:30px;">Log-in Here!</a></p>
+        <p><a href = "{% url 'register' %} "style = "color:white;font-size:30px;">Make an account here!</a></p>
 
     </body>
 </html>

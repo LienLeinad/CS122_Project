@@ -22,6 +22,9 @@ from my_app/migrations:
 from my_app/migrations/_pycache_:
 0001_initial.cpython-37.pyc
 
+from my_app/static:
+ANY FILE THAT ISN'T IN A FOLDER (These are HW files btw)
+
 REMINDER: DELETING THESE WILL PERMANENTLY DELETE ALL YOUR FILES FROM THE DATABASE, DO SO ONLY WHEN NEEDED!
 
 important links

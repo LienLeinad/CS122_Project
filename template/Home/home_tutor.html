@@ -36,12 +36,16 @@
                             <th>Module Title</th>
                             <th>Date Uploaded</th>
                         </tr>
+                        {% if new_modules %}
                         {% for mod in new_modules %}
                         <tr>
                             <td><a href="modules/{{ mod.ModuleTitle }}">{{mod.ModuleTitle}}</a></td>
                             <td>{{ mod.pub_date }}</td>
                         </tr>
                         {% endfor %}
+                        {% else %}
+                        <td>No Modules Uploaded</td>
+                        {% endif %}
                     </table>
                 </div>
                 <div id = "due">

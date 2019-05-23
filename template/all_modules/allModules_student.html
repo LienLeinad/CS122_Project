@@ -9,12 +9,10 @@
         {% endblock %}
     </head>
     {% block body %}
-    </div>
-        <br>
         <div id = "main">
             <div id = "top">
 			<h3 style = "text-align: left; float: left; padding-left: 20px">ALL MODULES</h3>
-			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: SY, Czarina Svetlana</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h3>
             </div>
             
             <center>
@@ -24,21 +22,23 @@
                             <tr>
                                 <th>Module Name</th>
                                 <th>Date Assigned</th>
+                                <th>Link</th>
                                 <th>Comments</th>
                             </tr>
-                            {% for m in Module %}
                             <tr>
-                                <td>
-                                    <a href = "{% url 'module_list' %}student/{{ m.ModuleTitle }}">{{m.ModuleTitle}}</a>
-                                </td>
-                                <td>{{m.pub_date}}</td>
-                                <td>Nice one!</td>
-                            </tr>
-                            {% endfor %}
+                                    {% for m in Module %}
+                                    <tr>
+                                        <td>
+                                            <a href = "{% url 'module_list' %}student/{{ m.ModuleTitle }}">{{m.ModuleTitle}}</a>
+                                        </td>
+                                        <td>{{m.pub_date}}</td>
+                                        <td>Nice one!</td>
+                                    </tr>
+                                    {% endfor %}
                         </table>
                     </div>
                 </div>
             </center> 
         </div>
-   {% endblock %}
+    {% endblock %}
 </html>

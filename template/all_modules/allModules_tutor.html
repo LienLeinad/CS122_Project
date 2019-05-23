@@ -1,24 +1,24 @@
-{% extends "navigationbar_tutor.html" %}
+{% extends 'navigationbar_tutor.html' %}
 <!DOCTYPE html>
 <html>
 <head>
-	{% load static %}
-	<title>{% block title%}ALL MODULES{% endblock %}</title>
+	{% load static  %}
+	<title>{% block title %}ALL MODULES{% endblock %}</title>
 	{% block head %}
-	<link href = "{% static 'my_app/allModules-style.css' %}" type = "text/css" rel = "stylesheet">
+	<link href = "{% static 'my_app/allModules-style.css'%}" type = "text/css" rel = "stylesheet">
 	{% endblock %}
 </head>
 
 {% block body %}
-	<br>
+
+
 	<div id = "main">
 		<div id = "top">
-			<h1 style = "text-align: left; float: left; padding-left: 20px">ALL MODULES</h1>
-			<h1 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h1>
+			<h3 style = "text-align: left; float: left; padding-left: 20px">ALL MODULES</h3>
+			<h3 style = "text-align: right; float: right; padding-right: 20px">Name: {{user.last_name}}, {{user.first_name}}</h3>
 		</div>
-		<input type="button" onclick="location.href='{% url "module_upload" %}'" value="Upload Module" align="left" width="48" height="48">
+
 		<div id = "content">
-            
 			<div id = "table">
 				<table>
 					<tr>
@@ -26,39 +26,37 @@
 						<th>Date Assigned</th>
 						<th>Uploader</th>
 						<th>Description</th>
+					</tr>
+
+					{% if Module %}
+					{% for module in Module %}
+					<tr>
+						<td>
+							<a href = "{{module.ModuleTitle}}">{{ module.ModuleTitle }}</a>
+						</td>
+						<td>{{module.pub_date}}</td>
+						<td>{{module.Tutor.first_name}} {{ module.Tutor.last_name }}</td>
+						<td id = 'desc' style = 'max-width:500px;'>{{ module.Description }}</td>
 						
 					</tr>
-					{% if not Module == None %}
-						{% for module in Module %}
-						<tr>
-							<td>
-								<a href = "{{module.ModuleTitle}}">{{ module.ModuleTitle }}</a>
-							</td>
-							<td>{{module.pub_date}}</td>
-							<td>{{module.Tutor.first_name}} {{ module.Tutor.last_name }}</td>
-							<td id = 'desc' style = 'max-width:500px;'>{{ module.Description }}</td>
-							
-						</tr>
-						{% endfor %}
+					{% endfor %}
 					{% else %}
 						<tr>
 							<td>No Modules Found</td>
 						</tr>
 					{% endif %}
-					<!-- <tr>
-						<td>Introduction to HTML 2</td>
-						<td>02 March 2019</td>
-						<td>
-							<a href = "module.html">Introduction-to-HTML-2</a>
-						</td>
-					</tr> -->
 
 				</table>
 
 			</div>
 		</div>
+        
+         <!--add the new page by changing #REPLACE_LATER
+            single quotation marks must be kept-->
+        <input type="button" onclick="location.href='{% url "module_upload" %}'" value="Upload Module" align="left" width="48" height="48">
+            </div>
 
 	</div>
 
-{% endblock %}
+{% endblock  %}
 </html>

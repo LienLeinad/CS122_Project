@@ -1,20 +1,23 @@
+html 
+{
+    height: 100%;
+}
 body
 {
-	background: #196dff;
-}
-
-#homered
-{
-	font-family: "Helvetica";
-	font-size: 13pt;
+	background-color: black;
+    background-image: linear-gradient(#182848, #11ffbd);
+    color:white;
+    background-size:auto;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #main
 {
-	width: 1400px;
-	height: 750px;
-	background: #ffffff;
-	border: solid 5px #00004c;
+	width: auto;
+	height: auto;
 
 	margin-top:  auto;
 	margin-bottom: auto;
@@ -24,95 +27,76 @@ body
 	font-family: "Helvetica";
 	text-align: center;
 }
-#desc
+
+#top
 {
-	max-width:550px;
-	padding-right:25px;
-	word-wrap:break-word;
+    font-size: 20px;
 }
 
-/* #top
+#content
 {
+	padding-top: 30px;
+    padding-bottom: 30px;
+	clear: both;
 
-} */
-input[type=button]
+	width: auto;
+	height: auto;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+
+	margin-top:  150px;
+	margin-bottom: auto;
+	margin-left: 50px;
+	margin-right: 50px;
+    text-align: center;
+}
+
+
+
+input[type=button], input[type=submit], input[type=reset] /*buttons*/
 {
-	background-color: black;
+    background-color: black;
     border: none;
     color: white;
     font-size: 18px;
     padding: 16px 32px;
     text-decoration: none;
-    /* margin: 4px 2px; */
+    margin: 4px 2px;
     cursor: pointer;
-	border-radius: 4px;
-	margin-top:60px;
-}
-#content
-{
-	padding-top: 40px;
-	clear: both;
-
-	width: 1300px;
-	height: 500px;
-	background: #b2b2ff;
-
-	margin-top:  50px;
-	margin-bottom: auto;
-	margin-left: auto;
-	margin-right: auto;
-	overflow:auto;
-}
-
-#table
-{
-	padding-left: 40px;
-	text-align: left;
-}
-
-h1
-{
-	font-family:  "Helvetica";
-	font-size: 18pt;
-	color: #00004c;
-}
-
-h2
-{
-	font-family: "Helvetica";
-	font-size: 18pt;
-	color: #00004c;
-}
-
-a
-{
-	text-decoration: none;
-}
-
-p
-{
-	font-family: "Helvetica";
-	font-size: 13pt;
+    border-radius: 4px;
 }
 
 table
 {
-	width: 100%;
-	font-family: "Helvetica";
-	font-size: 13pt;
+    width:inherit;
+    border-collapse: collapse;
+    font-family: "Trebuchet MS";
+    width:100%;
 }
-
+table, th, td 
+{
+    border-collapse: collapse;
+    font-family: "Trebuchet MS";
+    font-size:18px;
+    padding: 10px 30px;
+}
 th
 {
-	padding-bottom: 25px;
-	padding-top: 0px;
-	max-width:500px
+    text-align: left;
+    color:cadetblue;
 }
-
 td
 {
-	padding-top: 15px;
-	padding-bottom: 15px;
-	/* border-bottom: 1px solid #000000;
-	border-top: 1px solid #000000; */
+    text-align: left;
+}
+
+a /*links*/
+{
+    font-size: 18px;
+    color:lightsalmon;
+}
+tr:not(:first-child):hover
+{
+    background-color: rgba(0, 0, 0, 0.7);
 }

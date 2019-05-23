@@ -35,7 +35,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             temp = CustomUser.objects.get(username = username)
-            print(temp.query)
+
             if form.cleaned_data.get('user_type') == 'ST':
                 
                 if form2.is_valid():
@@ -93,10 +93,10 @@ def login(request):
                 new_modules = Module.objects.order_by('-pub_date')[:3]
                 latest_module = Module.objects.order_by('-pub_date').filter()[0]
                 context = {'first_name': first_name, 'last_name':last_name,'latest_module':latest_module,'new_modules':new_modules}
-                return render(request,'Home/home_tutor.html', context)
+                return render(request,'Home/home_student.html', context)
             else:
                 context = {'first_name': first_name, 'last_name':last_name,}
-                return render(request,'Home/home_tutor.html', context)
+                return render(request,'Home/home_student.html', context)
 
             return render(request,'Home/home_student.html', context)
         elif user_type == 'TU':
@@ -210,23 +210,24 @@ def module_tutor(request,ModuleTitle):
     return render(request, 'module/module_tutor.html', context)
      
 def module_student(request,ModuleTitle):
-    if not request.user.is_authenticated or request.user.user_type == "TU":
-        return redirect('invalid_login')
-    else:
-        module = Module.objects.get(ModuleTitle = ModuleTitle)
-        homework = HomeworkDetail.objects.get(ModuleTitle = module)
+    # if not request.user.is_authenticated or request.user.user_type == "TU":
+    #     return redirect('invalid_login')
+    # else:
+    print('I got here')
+    module = Module.objects.get(ModuleTitle = ModuleTitle)
+    homework = HomeworkDetail.objects.get(ModuleTitle = module)
 
-        if request.method == "POST":
-            form = HomeworkSubmissionForm(request.POST,request.FILES)
-            if form.is_valid():
-                HomeworkSubmissions = HomeworkSubmission(Homework = homework, ContentFile = form.cleaned_data.get('ContentFile'), StudentID = Student.objects.get(user = request.user))
-                HomeworkSubmissions.save()
-                return redirect('module_student', ModuleTitle = ModuleTitle)
-        form = HomeworkSubmissionForm()
-        submission = HomeworkSubmission.objects.filter(StudentID = Student.objects.get(user = request.user),Homework = homework)
-        print(submission)
-        context = {'module':module, 'user':request.user, 'homework':homework, 'form':form, 'submission':submission}
-        return render(request,'module/module_student.html',context)
+    if request.method == "POST":
+        form = HomeworkSubmissionForm(request.POST,request.FILES)
+        if form.is_valid():
+            HomeworkSubmissions = HomeworkSubmission(Homework = homework, ContentFile = form.cleaned_data.get('ContentFile'), StudentID = Student.objects.get(user = request.user))
+            HomeworkSubmissions.save()
+            return redirect('module_student', ModuleTitle = ModuleTitle)
+    form = HomeworkSubmissionForm()
+    submission = HomeworkSubmission.objects.filter(StudentID = Student.objects.get(user = request.user),Homework = homework)
+    print(submission)
+    context = {'module':module, 'user':request.user, 'homework':homework, 'form':form, 'submission':submission}
+    return render(request,'module/module_student.html',context)
 
 def module_upload(request):
     if not request.user.is_authenticated or request.user.user_type == "ST":
@@ -267,7 +268,7 @@ def module_list(request):
         return redirect('invalid_login')
     else:
         user = request.user
-        module = Module.objects.all()
+        module = Module.objects.order_by('-pub_date').all()
         context = {'Module': module}
         if user.user_type == "TU":
             return render(request, 'all_modules/allModules_tutor.html',context)

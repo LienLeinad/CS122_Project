@@ -27,7 +27,7 @@
 					</tr>
 
 					<tr>
-						<th style = "padding-bottom: 25px; padding-left: 20px">
+						<th style = "padding-bottom: 25px; padding-left: 20px;text-align:center">
 							<a href = "{{module.file.url}}">DOWNLOAD Module File Here!</a>
 						</th>
 					</tr>
@@ -36,7 +36,10 @@
 						<td style = "padding-bottom: 25px">Date Uploaded: </td>
 						<td style = "padding-bottom: 25px">{{module.pub_date}}</td>
 					</tr>
-
+					<tr>
+						<td style = "padding-bottom: 25px">Details: </td>
+						<td style = "padding-bottom: 25px">{{module.Description}}</td>
+					</tr>
 					<tr>
 						<th>Homework </th>
 					</tr>
@@ -55,7 +58,7 @@
 				<br/>
 				<br/>
 
-				<table id = "tab2">
+				<table id = "tab2" border = "1">
 					<tr>
 						<th>Student Name</th>
 						<th>Submission</th>
@@ -68,12 +71,20 @@
 
 						{% for sub in submission_list %}
 						{% if sub.StudentID == student and sub %}
-						<td>submission given</td>
+						<td>Submission Available! View admin to download</td>
 						
 						{% if sub.Comment %}
 						<td>{{sub.Comment}}</td>
 						{% else %}
-						<td><a href = "{{module.ModuleTitle}}/module/comment/{{ sub.id }}">Comment Here please</a></td>
+						<td>
+							<form method = "POST">{% csrf_token %}{{form.Comment}}
+							<button class = "btn btn-outline-info" type="submit" value = "Submit Comment">Submit Comment</button>
+							<input name = "student"  style = "display:none" value = "{{ student.id }}">
+							<input name = "HomeworkDetail" style = "display:none" value = "{{ sub.id }}">
+							</form>
+						</td>
+						
+						<!-- <td><a href = "{{module.ModuleTitle}}/module/comment/{{ sub.id }}">Comment Here please</a></td> -->
 						{% endif %}
 						{% endif %}
 						{% endfor %}

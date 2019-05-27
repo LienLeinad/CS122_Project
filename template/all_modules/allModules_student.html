@@ -22,8 +22,7 @@
                             <tr>
                                 <th>Module Name</th>
                                 <th>Date Assigned</th>
-                                <th>Link</th>
-                                <th>Comments</th>
+                                <th>Module Uploader</th>
                             </tr>
                             <tr>
                                     {% for m in Module %}
@@ -32,7 +31,7 @@
                                             <a href = "{% url 'module_list' %}student/{{ m.ModuleTitle }}">{{m.ModuleTitle}}</a>
                                         </td>
                                         <td>{{m.pub_date}}</td>
-                                        <td>Nice one!</td>
+                                        <td>{{ m.Tutor.first_name }} {{ m.Tutor.last_name }}</td>
                                     </tr>
                                     {% endfor %}
                         </table>

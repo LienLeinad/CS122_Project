@@ -3,6 +3,20 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser,Student,Module, HomeworkDetail,HomeworkSubmission
 BIRTH_YEAR_CHOICES = [
+    '1994',
+    '1995',
+    '1996',
+    '1997',
+    '1998',
+    '1999',
+    '2000',
+    '2001',
+    '2002',
+    '2003',
+    '2004',
+    '2005',
+    '2006',
+    '2007',
     '2008',
     '2009',
     '2010',
@@ -63,7 +77,7 @@ class HomeworkSubmissionForm(forms.ModelForm):
         fields = ['ContentFile']
 
 class StudentRegistrationForm(forms.ModelForm):
-    teacher = forms.ModelChoiceField(queryset = CustomUser.objects.filter(user_type = 'TU'), required= False)
+    teacher = forms.ModelChoiceField(queryset = CustomUser.objects.filter(user_type = 'TU'), required= False)#SELECT * FROM CustomUser WHERE user_type = "TU";
     class Meta:
         model = Student
         fields = ['teacher']
@@ -85,7 +99,7 @@ class ModuleUploadForm(forms.ModelForm):
         fields = ['ModuleTitle','Description','file']
 
 class CommentForm(forms.ModelForm):
-    Comment = forms.CharField(widget = forms.Textarea)
+    Comment = forms.CharField(widget = forms.Textarea,label = '')
     class Meta:
         model = HomeworkSubmission
         fields = ['Comment']

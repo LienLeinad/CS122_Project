@@ -68,11 +68,13 @@ class HomeworkDetail(models.Model):
     details = models.TextField(default='No Details')
     def __str__(self):
         return str(self.ModuleTitle)
+    def filename(self):
+        return os.path.basename(self.file.name)
 
 class HomeworkSubmission(models.Model):
 	# pk = object id
     Homework = models.ForeignKey(HomeworkDetail, on_delete = models.CASCADE)
-    ContentFile = models.FileField(blank = True)
+    ContentFile = models.FileField(blank = True, upload_to = 'static')
     StudentID = models.ForeignKey(Student,on_delete = models.CASCADE)
     Comment = models.TextField(default = "", null = True)
 
